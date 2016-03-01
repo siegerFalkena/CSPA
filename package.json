@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "angular-ui-router": "^0.2.18"
+  },
   "devDependencies": {
     "bower": "^1.7.7",
     "connect-livereload": "^0.5.4",

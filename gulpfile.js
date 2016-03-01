@@ -8,24 +8,28 @@ var gulp = require('gulp'),
     express = require('express');
 
 var SRC = './app/',
+    src = SRC.substring(2, 100),
     DIST = './dist/',
+    dist = DIST.substring(2, 100),
     PORT = 4000,
     LIVERELOAD_PORT = 35729;
 //build, components
 
+var excludeBowerImports = ['!' + src + 'components/**/*.*', '!' + src + 'components/*.*'];
 
 gulp.task('build', ['components'], function() {
-    gulp.src([SRC + '**/*.*', SRC + '!components'])
+    util.log(excludeBowerImports);
+    gulp.src([SRC + '**/*.*', excludeBowerImports[0], excludeBowerImports[1]])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));
-    return gulp.src([SRC + '*.*', SRC + '!components'])
+    return gulp.src([SRC + '*.*', '!' + SRC + 'components/**.*'])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));
 })
 
 
 gulp.task('devBuild', ['components'], function() {
-    gulp.src([SRC + '**/*.*', SRC + '!components'])
+    gulp.src([SRC + '**/*.*', excludeBowerImports[0], excludeBowerImports[1]])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));
     gulp.src([SRC + 'index.js'])
@@ -52,6 +56,7 @@ gulp.task('copycomponents', function() {
             SRC + 'components/angular/angular.min.js',
             SRC + 'components/angular-animate/angular-animate.min.js',
             SRC + 'components/angular-route/angular-route.min.js',
+            SRC + 'components/angular-ui-router/release/angular-ui-router.min.js',
             SRC + 'components/angular-bootstrap/ui-bootstrap-tpls.min.js',
             SRC + 'components/angular-bootstrap/ui-bootstrap-csp.css',
             SRC + 'components/bootstrap/dist/css/bootstrap.min.css'
@@ -67,6 +72,7 @@ gulp.task('bower', function() {
 
 
 var lr;
+
 function reloadCB(event) {
     var fileName = require('path').relative(__dirname + '/dist/', event.path);
 

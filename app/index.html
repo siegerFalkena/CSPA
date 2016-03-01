@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="Concentrator">
+<html lang="en" ng-app="concentrator">
 <head>
 <link rel="stylesheet" type="text/css" href="components/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="components/ui-bootstrap-csp.css">
@@ -15,12 +15,20 @@
     <div ng-view></div>
 
 </body>
-
+  <!--IMPORTS-->
   <script src="components/angular.min.js"></script>
   <script src="components/angular-route.min.js"></script>
   <script src="components/angular-animate.min.js"></script>
+  <script src="components/angular-ui-router.min.js"></script>
   <script src="components/ui-bootstrap-tpls.min.js"></script>
+  
+  <!--code-->
   <script src="index.js"></script>
+  <script src="routes.js"></script>
+  <script src="directives.js"></script>
+  <script src="Attribute/concentrator.attribute.js"></script>
+  <script src="Product/concentrator.products.js"></script>
+  <script src="Vendor/concentrator.vendors.js"></script>
 
 
 </html>

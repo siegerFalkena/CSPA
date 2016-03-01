@@ -1,4 +1,7 @@
 'use strict';
 
-angular.module('Concentrator', [
+angular.module('concentrator', [
+               'ngAnimate',
+               'ngRoute',
+               'ui.bootstrap'
                ]);

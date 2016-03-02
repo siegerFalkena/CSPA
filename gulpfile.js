@@ -18,7 +18,7 @@ var SRC = './app/',
 
 var excludeBowerImports = ['!' + src + 'components/**/*.*', '!' + src + 'components/*.*'];
 
-gulp.task('build', ['components'], function() {
+gulp.task('build', ['components', 'test'], function() {
     util.log(excludeBowerImports);
     gulp.src([SRC + '**/*.*', excludeBowerImports[0], excludeBowerImports[1]])
         .pipe(changed(DIST))
@@ -29,7 +29,7 @@ gulp.task('build', ['components'], function() {
 })
 
 
-gulp.task('devBuild', ['components'], function() {
+gulp.task('devBuild', ['components', 'test'], function() {
     gulp.src([SRC + '**/*.*', excludeBowerImports[0], excludeBowerImports[1]])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));

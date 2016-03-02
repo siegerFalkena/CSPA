@@ -6,9 +6,9 @@ angular.module('concentrator', [
     'concentrator.vendors',
     'concentrator.attributes'
 ])
-    .config(['$routeProvider',
-        function($routeProvider) {
-            $routeProvider
+    .config(['$urlRouterProvider',
+        function($urlRouterProvider) {
+            $urlRouterProvider
                 .when('/home', {
                     templateUrl: 'home.html',
                     controller: 'homeCtrl'
@@ -25,9 +25,7 @@ angular.module('concentrator', [
                     templateUrl: 'vendors.html',
                     controller: 'vendorCtrl'
                 })
-                .otherwise({
-                    templateUrl: '404.html'
-                });
+                .otherwise('/');
 
         }
     ]);

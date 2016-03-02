@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     sequence = require('run-sequence'),
     injectReload = require('gulp-inject-reload'),
     bower = require('gulp-bower'),
-    express = require('express');
+    express = require('express'),
+    Server = require('karma').Server;
 
 var SRC = './app/',
     src = SRC.substring(2, 100),
@@ -83,6 +84,14 @@ function reloadCB(event) {
     });
 }
 
+gulp.task('test', function(done) {
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, function(){
+        done();    
+    }).start();
+})
 
 gulp.task('buildWatcher', function() {
     return gulp.watch([SRC + '**/*.*', SRC + '*.*'], ['devBuild']);

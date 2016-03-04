@@ -16,14 +16,14 @@ var SRC = './app/',
     LIVERELOAD_PORT = 35729;
 //build, components
 
-var excludeBowerImports = ['!' + src + 'components/**/*.*', '!' + src + 'components/*.*'];
+var excludeBowerImports = ['!' + src + 'assets/*.*', '!' + src + 'assets/**/*.*'];
 
-gulp.task('build', ['components', 'test'], function() {
+gulp.task('build', ['components'], function() {
     util.log(excludeBowerImports);
     gulp.src([SRC + '**/*.*', excludeBowerImports[0], excludeBowerImports[1]])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));
-    return gulp.src([SRC + '*.*', '!' + SRC + 'components/**.*'])
+    return gulp.src([SRC + '*.*', '!' + SRC + 'assets/*.*', '!**/*.css'])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));
 })
@@ -52,19 +52,27 @@ gulp.task('components', function() {
 })
 
 
-gulp.task('copycomponents', function() {
+gulp.task('copycomponents',['copyCSS'], function() {
     return gulp.src([
-            SRC + 'components/angular/angular.min.js',
-            SRC + 'components/angular-animate/angular-animate.min.js',
-            SRC + 'components/angular-route/angular-route.min.js',
-            SRC + 'components/angular-ui-router/release/angular-ui-router.min.js',
-            SRC + 'components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-            SRC + 'components/angular-bootstrap/ui-bootstrap-csp.css',
-            SRC + 'components/bootstrap/dist/css/bootstrap.min.css'
+            SRC + 'assets/angular/angular.min.js',
+            SRC + 'assets/angular-animate/angular-animate.min.js',
+            SRC + 'assets/angular-route/angular-route.min.js',
+            SRC + 'assets/angular-ui-router/release/angular-ui-router.min.js',
+            SRC + 'assets/angular-bootstrap/ui-bootstrap-tpls.min.js'
         ])
-        .pipe(changed(DIST + 'components'))
-        .pipe(gulp.dest(DIST + 'components'));
+        .pipe(changed(DIST + 'assets/js/'))
+        .pipe(gulp.dest(DIST + 'assets/js/'));
 });
+gulp.task('copyCSS', function() {
+    return gulp.src([
+            SRC + 'assets/angular-bootstrap/ui-bootstrap-csp.css',
+            SRC + 'assets/bootstrap/dist/css/bootstrap.min.css',
+            SRC + 'stylesheet.css'
+        ])
+        .pipe(changed(DIST + 'assets/css/'))
+        .pipe(gulp.dest(DIST + 'assets/css/'));
+});
+
 gulp.task('bower', function() {
     return bower({
         cmd: 'install'
@@ -94,11 +102,13 @@ gulp.task('test', function(done) {
 })
 
 gulp.task('buildWatcher', function() {
+    util.log('watching '+ SRC+' for build');
     return gulp.watch([SRC + '**/*.*', SRC + '*.*'], ['devBuild']);
 })
 
 
 gulp.task('reloadWatcher', function() {
+    util.log('watching '+ DIST +'for builds');
     return gulp.watch([DIST + '**/*.*', DIST + '*.*'], reloadCB);
 })
 
@@ -109,7 +119,7 @@ gulp.task('devServer', function() {
     lr.listen(LIVERELOAD_PORT);
     var root = __dirname + '\\dist';
     util.log(root);
-    appServ.use('/dist', express.static(root));
+    appServ.use('/', express.static(root));
     appServ.use(require('connect-livereload')());
     appServ.listen(PORT);
 })

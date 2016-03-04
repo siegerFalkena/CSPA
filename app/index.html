@@ -1,34 +1,33 @@
 <!doctype html>
 <html lang="en" ng-app="concentrator">
-<head>
-<link rel="stylesheet" type="text/css" href="components/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="components/ui-bootstrap-csp.css">
-</head>
-<body>
-    <div class="nav navbar-default" uib-collapse>
-        <div class="container">
-            <button class="btn">
-                BUTAN
-            </button>
-        </div>
+  <head>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/ui-bootstrap-csp.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  </head>
+  <body >
+    <div class="container-fluid">
+      <div class="row">
+        <ng-include src="'/components/Concentrator/navbar/navbar.html'" ng-controller="navbarCtrl"></ng-include>
     </div>
-    <div ng-view></div>
-
+    <div class="row">
+      <div ng-view></div>
+    </div>
+  </div>
 </body>
-  <!--IMPORTS-->
-  <script src="components/angular.min.js"></script>
-  <script src="components/angular-route.min.js"></script>
-  <script src="components/angular-animate.min.js"></script>
-  <script src="components/angular-ui-router.min.js"></script>
-  <script src="components/ui-bootstrap-tpls.min.js"></script>
-  
-  <!--code-->
-  <script src="index.js"></script>
-  <script src="routes.js"></script>
-  <script src="directives.js"></script>
-  <script src="Attribute/concentrator.attribute.js"></script>
-  <script src="Product/concentrator.products.js"></script>
-  <script src="Vendor/concentrator.vendors.js"></script>
-
+</div>
+<!--IMPORTS-->
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/angular-animate.min.js"></script>
+<script src="assets/js/angular-ui-router.min.js"></script>
+<script src="assets/js/ui-bootstrap-tpls.min.js"></script>
+<!--MODULES-->
+<script src="index.js"></script>
+<script src="routes.js"></script>
+<script src="shared/directives.js"></script>
+<script src="components/Attribute/concentrator.attribute.js"></script>
+<script src="components/Product/concentrator.products.js"></script>
+<script src="components/Vendor/concentrator.vendors.js"></script>
+<script src="components/Concentrator/navbar/navbar.js"></script>
 
 </html>

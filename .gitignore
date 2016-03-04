@@ -36,4 +36,4 @@ node_modules
 dist
 
 #bower dependencies
-app/components
+app/assets

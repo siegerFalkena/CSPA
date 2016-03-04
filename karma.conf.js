@@ -16,11 +16,11 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'dist/components/angular.min.js',
-            'dist/components/angular-route.min.js',
-            'dist/components/angular-animate.min.js',
-            'dist/components/angular-ui-router.min.js',
-            'dist/components/ui-bootstrap-tpls.min.js',
+            'dist/assets/js/angular.min.js',
+            'dist/assets/js/angular-route.min.js',
+            'dist/assets/js/angular-animate.min.js',
+            'dist/assets/js/angular-ui-router.min.js',
+            'dist/assets/js/ui-bootstrap-tpls.min.js',
             'dist/*.js',
             'dist/**/*.js',
             'test/*.test.js',

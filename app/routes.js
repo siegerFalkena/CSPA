@@ -1,6 +1,5 @@
 'use strict';
-angular.module('concentrator', [
-    'ngRoute',
+angular.module('concentrator.routes', [
     'ui.router',
     'concentrator.products',
     'concentrator.vendors',
@@ -13,23 +12,23 @@ angular.module('concentrator', [
   // Now set up the states
   $stateProvider
     .state('state1', {
-      url: "/state1",
-      templateUrl: "partials/state1.html"
+      url: "/vendors",
+      templateUrl: "vendor/state1.html"
     })
     .state('state1.list', {
-      url: "/list",
+      url: "/vendors",
       templateUrl: "partials/state1.list.html",
       controller: function($scope) {
         $scope.items = ["A", "List", "Of", "Items"];
       }
     })
     .state('state2', {
-      url: "/state2",
+      url: "/products",
       templateUrl: "partials/state2.html"
     })
     .state('state2.list', {
-      url: "/list",
-        templateUrl: "partials/state2.list.html",
+      url: "/products",
+        templateUrl: "products/state2.list.html",
         controller: function($scope) {
           $scope.things = ["A", "Set", "Of", "Things"];
         }

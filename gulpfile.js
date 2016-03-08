@@ -16,7 +16,7 @@ var SRC = './app/',
     LIVERELOAD_PORT = 35729;
 //build, components
 
-var excludeBowerImports = ['!' + src + 'assets/*.*', '!' + src + 'assets/**/*.*'];
+var excludeBowerImports = ['!' + src + 'assets/bower/*.*', '!' + src + 'assets/bower/**/*.*'];
 
 gulp.task('build', ['components'], function() {
     util.log(excludeBowerImports);
@@ -52,25 +52,33 @@ gulp.task('components', function() {
 })
 
 
-gulp.task('copycomponents',['copyCSS'], function() {
+gulp.task('copycomponents',['copyCSS', 'copyImages'], function() {
     return gulp.src([
-            SRC + 'assets/angular/angular.min.js',
-            SRC + 'assets/angular-animate/angular-animate.min.js',
-            SRC + 'assets/angular-route/angular-route.min.js',
-            SRC + 'assets/angular-ui-router/release/angular-ui-router.min.js',
-            SRC + 'assets/angular-bootstrap/ui-bootstrap-tpls.min.js'
+            SRC + 'assets/bower/angular/angular.min.js',
+            SRC + 'assets/bower/angular-animate/angular-animate.min.js',
+            SRC + 'assets/bower/angular-route/angular-route.min.js',
+            SRC + 'assets/bower/angular-ui-router/release/angular-ui-router.min.js',
+            SRC + 'assets/bower/angular-bootstrap/ui-bootstrap-tpls.min.js'
         ])
         .pipe(changed(DIST + 'assets/js/'))
         .pipe(gulp.dest(DIST + 'assets/js/'));
 });
 gulp.task('copyCSS', function() {
     return gulp.src([
-            SRC + 'assets/angular-bootstrap/ui-bootstrap-csp.css',
-            SRC + 'assets/bootstrap/dist/css/bootstrap.min.css',
+            SRC + 'assets/bower/angular-bootstrap/ui-bootstrap-csp.css',
+            SRC + 'assets/bower/bootstrap/dist/css/bootstrap.min.css',
             SRC + 'stylesheet.css'
         ])
         .pipe(changed(DIST + 'assets/css/'))
         .pipe(gulp.dest(DIST + 'assets/css/'));
+});
+
+gulp.task('copyImages', function() {
+    return gulp.src([
+            SRC + 'assets/images/*.*',
+        ])
+        .pipe(changed(DIST + 'assets/images/'))
+        .pipe(gulp.dest(DIST + 'assets/images/'));
 });
 
 gulp.task('bower', function() {

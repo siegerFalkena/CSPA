@@ -1,0 +1,10 @@
+<div class="input-group">
+  <input type="text" class="form-control" aria-label="...">
+  <div class="input-group-btn" uib-dropdown on-toggle="toggled(open)">
+  <button class="btn btn-default" type="button">Search</button>
+  <button type="button" class="btn btn-default" uib-dropdown-toggle  aria-haspopup="true" aria-expanded="false">{{searchBox.title}}<span class="caret"></span></button>
+        <ul uib-dropdown-menu class="dropdown-menu"  aria-labelledby="simple-dropdown">
+          <li ng-repeat="category in searchBox.categories track by $index"><a href="{{category.url}}">{{category.name}}</a></li>
+        </ul>
+  </div>
+</div>

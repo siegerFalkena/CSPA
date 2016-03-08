@@ -8,7 +8,8 @@
   <body >
     <div class="container-fluid">
       <div class="row">
-        <ng-include src="'/components/Concentrator/navbar/navbar.html'" ng-controller="navbarCtrl"></ng-include>
+        <navbar></navbar>
+        </hr>
     </div>
     <div class="row">
       <div ng-view></div>
@@ -21,6 +22,7 @@
 <script src="assets/js/angular-animate.min.js"></script>
 <script src="assets/js/angular-ui-router.min.js"></script>
 <script src="assets/js/ui-bootstrap-tpls.min.js"></script>
+
 <!--MODULES-->
 <script src="index.js"></script>
 <script src="routes.js"></script>
@@ -28,6 +30,9 @@
 <script src="components/Attribute/concentrator.attribute.js"></script>
 <script src="components/Product/concentrator.products.js"></script>
 <script src="components/Vendor/concentrator.vendors.js"></script>
-<script src="components/Concentrator/navbar/navbar.js"></script>
+<script src="components/navbar/navbar.js"></script>
+<script src="components/navbar/navbarDirectives.js"></script>
+<script src="components/searchFilter/searchFilter.js"></script>
+<script src="components/searchFilter/searchFilterDirectives.js"></script>
 
 </html>

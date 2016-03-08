@@ -37,3 +37,7 @@
 .slide-animate.ng-leave.ng-leave-active {
   top:50px;
 }
+
+select {
+  max-width: 200px;
+}

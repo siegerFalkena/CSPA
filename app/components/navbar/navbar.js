@@ -42,10 +42,13 @@ function navSearchCtrl(scope){
     scope.searchBox = {
         title: 'category',
         categories: [
-            {url: 'url1', name: 'url1'},
-            {url: 'url2', name: 'url2'},
-            {url: 'url3', name: 'url3'},
-            {url: 'url4', name: 'url4'}
+            {name: 'url1'},
+            {name: 'url2'},
+            {name: 'url3'},
+            {name: 'url4'},
+            {name: 'url5'}
         ]
     }
+
+    scope.onClick = {}
 }

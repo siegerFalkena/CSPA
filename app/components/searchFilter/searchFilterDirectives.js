@@ -12,6 +12,10 @@ function filter() {
 
 function navSearchFilter(){
     return {
+        restrict: 'E',
+        scope: {
+            searchbox: '='
+        },
         templateUrl: '/components/searchFilter/partials/navSearchFilter.html'
     }
 }

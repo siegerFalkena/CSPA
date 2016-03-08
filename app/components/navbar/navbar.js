@@ -6,49 +6,56 @@
         'concentrator.component.searchFilter'
     ])
     .controller('navbarCtrl',   ['$scope', navbarCtrl])
-    .controller('navSearchCtrl',['$scope', navSearchCtrl])
-    .controller('dropdownCtrl', ['$scope', dropdownCtrl]);
+    .controller('navSearchCtrl',['$scope', '$http', navSearchCtrl])
    
 
 function navbarCtrl(scope) {
-    scope.Brand = {
-        name: 'concentrator',
+    scope.brand = {
+        name: 'Jumbo',
         url: '/',
         imgSrc: 'assets/images/jumbo.png'
     };
-    scope.items = [
-        {name: 'Products', url: '/product'},
-        {name: 'Vendors', url: '/vendor'},
-        {name: 'Attributes', url: '/attribute'},
-        {name: 'Categories', url: '/category'},
-        {name: 'Documentation', url: '/documentation'}
-    ];
-}
 
-function dropdownCtrl(scope){
-    scope.dropdown = {
-        title: 'Dropdown',
+    scope.diract = {
+        name: 'Concentrator',
+        url: '/',
+        imgSrc: 'assets/images/diract_logo.png'
+    };
+
+    scope.items = [
+        {name: 'Products', url: '#/product'},
+        {name: 'Vendors', url: '#/vendor'},
+        {name: 'Attributes', url: '#/attribute'},
+        {name: 'Categories', url: '#/category'},
+        {name: 'Documentation', url: '#/documentation'}
+    ];
+
+    scope.admin = {
+        title: 'Admin',
         links: [{
-            name: 'firstElement',
-            url: '/url1'
+            name: 'users',
+            url: '#/users'
         },
         {
-            name: 'secondElement',
-            url: '/url2'
+            name: 'logout',
+            url: '#/logout'
         }]
-    }
-}
-function navSearchCtrl(scope){
-    scope.searchBox = {
-        title: 'category',
-        categories: [
-            {name: 'url1'},
-            {name: 'url2'},
-            {name: 'url3'},
-            {name: 'url4'},
-            {name: 'url5'}
-        ]
-    }
+    };
 
-    scope.onClick = {}
+    scope.searchbox = {
+        actionLabel: 'Search',
+        categories: [
+            {name: 'Products'},
+            {name: 'Vendors'},
+            {name: 'Categories'},
+            {name: 'Attributes'},
+            {name: 'Documentation'}
+        ],
+        submit: function(){
+        }
+    };
+}
+
+function navSearchCtrl(scope, http){
+    
 }

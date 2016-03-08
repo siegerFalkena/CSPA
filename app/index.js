@@ -5,5 +5,7 @@ angular.module('concentrator', [
     'ui.bootstrap',
     'ui.bootstrap.collapse',
     'ui.bootstrap.buttons',
-    'concentrator.component.navbar'
+    'concentrator.component.navbar',
+    'concentrator.component.product',
+    'ngCookies'
 ]);

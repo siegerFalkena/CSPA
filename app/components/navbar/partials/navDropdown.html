@@ -1,10 +1,12 @@
-<ul class="nav navbar-nav" ng-controller="dropdownCtrl">
-    <li class="dropdown" ng-model="dropdown" uib-dropdown on-toggle="toggled(open)">
-        <a href id="simple-dropdown" uib-dropdown-toggle>{{dropdown.title}}<span class="caret"></span></a>
-        <ul uib-dropdown-menu aria-labelledby="simple-dropdown">
-            <li ng-repeat="link in dropdown.links track by $index"> <!---->
-                <a href="{{link.url}}">{{link.name}}</a>
-            </li>
-        </ul>
-    </li>
+<ul ng-model="dropdown" class="nav navbar-nav" >
+<li class="menuitem dropdown" uib-dropdown on-toggle="toggled(open)">
+    <a href id="simple-dropdown" class="dropdown-toggle" uib-dropdown-toggle>{{dropdown.title}}
+        <span class="caret"></span>
+    </a>
+    <ul uib-dropdown-menu aria-labelledby="simple-dropdown">
+        <li class="menuitem" ng-repeat="link in dropdown.links track by $index">
+            <a href="{{link.url}}">{{link.name}}</a>
+        </li>
+    </ul>
+</li>
 </ul>

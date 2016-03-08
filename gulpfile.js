@@ -56,6 +56,7 @@ gulp.task('copycomponents',['copyCSS', 'copyImages'], function() {
     return gulp.src([
             SRC + 'assets/bower/angular/angular.min.js',
             SRC + 'assets/bower/angular-animate/angular-animate.min.js',
+            SRC + 'assets/bower/angular-cookies/angular-cookies.min.js',
             SRC + 'assets/bower/angular-route/angular-route.min.js',
             SRC + 'assets/bower/angular-ui-router/release/angular-ui-router.min.js',
             SRC + 'assets/bower/angular-bootstrap/ui-bootstrap-tpls.min.js'

@@ -58,6 +58,7 @@ gulp.task('copycomponents',['copyCSS', 'copyImages'], function() {
             SRC + 'assets/bower/angular-animate/angular-animate.min.js',
             SRC + 'assets/bower/angular-cookies/angular-cookies.min.js',
             SRC + 'assets/bower/angular-route/angular-route.min.js',
+            SRC + 'assets/bower/angular-mocks/angular-mocks.js',
             SRC + 'assets/bower/angular-ui-router/release/angular-ui-router.min.js',
             SRC + 'assets/bower/angular-bootstrap/ui-bootstrap-tpls.min.js'
         ])
@@ -101,7 +102,12 @@ function reloadCB(event) {
     });
 }
 
-gulp.task('test', function(done) {
+gulp.task('test', function() {
+    gulp.src('assets/bower/angular-mocks/angular-mocks.js').pipe(gulp.dest('assets/js/'));
+    return sequence('devBuild', 'runTestServer');
+})
+
+gulp.task('runTestServer', function(done) {
     new Server({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true
@@ -137,3 +143,4 @@ gulp.task('devServer', function() {
 gulp.task('devEnv', function() {
     return sequence('devServer', 'devBuild', ['buildWatcher', 'reloadWatcher']);
 })
+

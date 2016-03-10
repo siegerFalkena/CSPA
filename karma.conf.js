@@ -21,6 +21,7 @@ module.exports = function(config) {
             'dist/assets/js/angular-animate.min.js',
             'dist/assets/js/angular-ui-router.min.js',
             'dist/assets/js/ui-bootstrap-tpls.min.js',
+            'dist/assets/js/angular-mocks.js',
             'dist/*.js',
             'dist/**/*.js',
             'test/*.test.js',

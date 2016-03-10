@@ -1,18 +1,12 @@
 <div class="table-responsive">
     <table class="table table-condensed table-bordered">
         <thead>
-        <tr>
-            <td>Name</td>
-            <td>price</td>
-        </tr>
+            <tr >
+                <headerdata item=""></headerdata>
+            </tr>
         </thead>
-        <tr ng-repeat="product in elementlist.products track by $index">
-            <td>
-                {{product.name}}
-            </td>
-            <td>
-                {{product.prijs}}
-            </td>
-        </tr>
+            <tr ng-repeat="item in items track by $index">
+                <data item=""></data>
+            </tr>
     </table>
 </div>

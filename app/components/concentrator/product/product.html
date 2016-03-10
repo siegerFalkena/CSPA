@@ -1,1 +1,9 @@
-<list elementlist="products"></list>
+<div class="col-md-2">
+	<div></div>
+	<a ng-repeat="action in actions track by $index" >
+		<h2 >{{action.label}}</h2>
+	</a>
+</div>
+<div class="col-md-9 col-md-offset-1">
+	<ng-include src="'components/concentrator/product/partials/productList.html'"></ng-include>
+</div>

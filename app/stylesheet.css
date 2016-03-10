@@ -79,3 +79,8 @@ select {
     }
 }
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+@media (min-width: 768px)
+#sidebar-wrapper {
+    width: 250px;
+}

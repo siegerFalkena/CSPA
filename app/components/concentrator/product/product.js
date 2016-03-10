@@ -7,21 +7,46 @@ angular.module('concentrator.component.product', [
 .controller('productCtrl', ['$scope', products]);
 
 function products(scope) {
-    scope.products = {
-        title: 'products',
-        products:
-        [{
-            name: 'appel',
-            prijs: '9.99'
+    scope.actions = [
+    {
+        label: 'actionExample',
+        doit: function(){
+            console.log(action)
+        }
+    }
+    ];
+    scope.sortType = 'ID';
+    scope.sortReverse = false;
+    
+    scope.searchbox = {
+        actionLabel: 'filter',
+        categories: [{
+            name: 'date'
         }, {
-            name: 'peer',
-            prijs: '9.99'
+            name: 'price'
         }, {
-            name: 'banaan',
-            prijs: '9.99'
+            name: 'ID'
         }, {
-            name: 'granaatappel',
-            prijs: '9.99'
+            name: 'date'
         }]
     };
+    
+
+    scope.itemlist = [{
+        ID: 1,
+        name: 'appel',
+        price: '9.99'
+    }, {
+        ID: 2,
+        name: 'peer',
+        price: '8.99'
+    }, {
+        ID: 3,
+        name: 'banaan',
+        price: '7.99'
+    }, {
+        ID: 4,
+        name: 'granaatappel',
+        price: '6.99'
+    }];
 };

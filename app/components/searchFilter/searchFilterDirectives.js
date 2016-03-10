@@ -1,6 +1,6 @@
 'use strict';
 angular.module('concentrator.component.searchFilter')
-.directive('searchFilter', brand)
+.directive('searchfilter', navSearchFilter)
 .directive('navsearchfilter', navSearchFilter)
 ;
 

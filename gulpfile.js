@@ -52,7 +52,7 @@ gulp.task('components', function() {
 })
 
 
-gulp.task('copycomponents',['copyCSS', 'copyImages'], function() {
+gulp.task('copycomponents', ['copyCSS', 'copyImages'], function() {
     return gulp.src([
             SRC + 'assets/bower/angular/angular.min.js',
             SRC + 'assets/bower/angular-animate/angular-animate.min.js',
@@ -111,29 +111,32 @@ gulp.task('runTestServer', function(done) {
     new Server({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true
-    }, function(){
-        done();    
+    }, function() {
+        done();
     }).start();
 })
 
 gulp.task('buildWatcher', function() {
-    util.log('watching '+ SRC+' for build');
+    util.log('watching ' + SRC + ' for build');
     return gulp.watch([SRC + '**/*.*', SRC + '*.*'], ['devBuild']);
 })
 
 
 gulp.task('reloadWatcher', function() {
-    util.log('watching '+ DIST +'for builds');
+    util.log('watching ' + DIST + 'for builds');
     return gulp.watch([DIST + '**/*.*', DIST + '*.*'], reloadCB);
 })
 
 
 gulp.task('devServer', function() {
     var appServ = express();
+    var router = express.Router();
+    expressRESTservice(router);
     lr = require('tiny-lr')();
     lr.listen(LIVERELOAD_PORT);
     var root = __dirname + '\\dist';
     util.log(root);
+    appServ.use('/REST', router);
     appServ.use('/', express.static(root));
     appServ.use(require('connect-livereload')());
     appServ.listen(PORT);
@@ -144,3 +147,40 @@ gulp.task('devEnv', function() {
     return sequence('devServer', 'devBuild', ['buildWatcher', 'reloadWatcher']);
 })
 
+function expressRESTservice(router) {
+    router.get('/product/:id', function(req, res, cb) {
+        res.json({
+            ID: 4,
+            name: 'granaatappel',
+            price: '6.99'
+        });
+        cb();
+    });
+    router.get('/product', function(req, res, cb) {
+        res.jsonp({
+            itemslist: [{
+                ID: 1,
+                name: 'appel',
+                price: '9.99'
+            },
+            {
+                ID: 2,
+                name: 'peer',
+                price: '8.99'
+            },
+            {
+                ID: 3,
+                name: 'banaan',
+                price: '7.99'
+            },
+            {
+                ID: 4,
+                name: 'granaatappel',
+                price: '6.99'
+            }
+        ]});
+        cb();
+    });
+
+
+}

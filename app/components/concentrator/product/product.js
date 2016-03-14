@@ -53,7 +53,7 @@ function products(scope, productResources, $log, controllerCommons) {
         }, {
             name: 'none'
         }, {
-            name: 'description'
+            name: 'any'
         }]
     };
 

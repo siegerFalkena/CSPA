@@ -56,6 +56,7 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'], function() {
     return gulp.src([
             SRC + 'assets/bower/angular/angular.min.js',
             SRC + 'assets/bower/angular-animate/angular-animate.min.js',
+            SRC + 'assets/bower/angular-resource/angular-resource.min.js',
             SRC + 'assets/bower/angular-cookies/angular-cookies.min.js',
             SRC + 'assets/bower/angular-route/angular-route.min.js',
             SRC + 'assets/bower/angular-mocks/angular-mocks.js',
@@ -127,9 +128,9 @@ gulp.task('reloadWatcher', function() {
     return gulp.watch([DIST + '**/*.*', DIST + '*.*'], reloadCB);
 })
 
-
+var appServ;
 gulp.task('devServer', function() {
-    var appServ = express();
+    appServ = express();
     var router = express.Router();
     expressRESTservice(router);
     lr = require('tiny-lr')();
@@ -145,7 +146,7 @@ gulp.task('devServer', function() {
 
 gulp.task('devEnv', function() {
     return sequence('devServer', 'devBuild', ['buildWatcher', 'reloadWatcher']);
-})
+});
 
 function expressRESTservice(router) {
     router.get('/product/:id', function(req, res, cb) {
@@ -157,8 +158,7 @@ function expressRESTservice(router) {
         cb();
     });
     router.get('/product', function(req, res, cb) {
-        res.jsonp({
-            itemslist: [{
+        res.jsonp([{
                 ID: 1,
                 name: 'appel',
                 price: '9.99'
@@ -178,7 +178,7 @@ function expressRESTservice(router) {
                 name: 'granaatappel',
                 price: '6.99'
             }
-        ]});
+        ]);
         cb();
     });
 

@@ -1,9 +1,16 @@
 <form ng-model="searchbox" class="navbar-form navbar-input-group ">
     <div class="form-group input-group-btn" ng-model="searchBox">
-        <input type="text" class="form-control" aria-label="..." placeholder="{{searchbox.actionLabel}}">
-        <select uib-dropbown-menu class="btn btn-default form-control" aria-labelledby="simple-dropdown">
-            <option ng-repeat="category in searchbox.categories track by $index">{{category.name}}</option>
+        
+        <input type="text" ng-model="searchtext" class="form-control" aria-label="..." placeholder="{{searchbox.actionLabel}}" ng-model="searchaction.query">
+        
+        <select uib-dropbown-menu
+            class="btn btn-default form-control" aria-labelledby="simple-dropdown"
+            ng-model="searchaction.selectedcategory"
+            ng-options="category.name for category in searchaction.searchcategories track by category.id">
         </select>
-        <button class="btn btn-default" type="button" ng-click="searchbox.submit()">{{searchbox.actionLabel}}</button>
+
+        <button class="btn btn-default" type="button" ng-click="searchaction.go()">
+        {{searchaction.actionLabel}}
+        </button>
     </div>
 </form>

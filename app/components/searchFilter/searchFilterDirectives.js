@@ -6,7 +6,14 @@ angular.module('concentrator.component.searchFilter')
 
 function filter() {
     return {
-        templateUrl: '/components/searchFilter/partials/filter.html'
+        restrict : 'E',
+        transclude: true,
+        scope: {
+            searchbox: '=',
+            searchcategories: '=',
+            searchaction: '='
+        },
+        templateUrl: '/components/searchFilter/partials/navSearchFilter.html'
     }
 }
 
@@ -14,7 +21,9 @@ function navSearchFilter(){
     return {
         restrict: 'E',
         scope: {
-            searchbox: '='
+            searchbox: '=',
+            searchcategories: '=',
+            searchaction: '='
         },
         templateUrl: '/components/searchFilter/partials/navSearchFilter.html'
     }

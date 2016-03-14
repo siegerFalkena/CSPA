@@ -2,12 +2,18 @@
 angular.module('concentrator.component.product', [
     'ui.bootstrap',
     'concentrator.component.list',
-    'concentrator.services.rest'
+    'concentrator.service.resource',
+    'concentrator.service.controllerUtils'
 ])
 
-.controller('productCtrl', ['$scope', 'productRestDAO', '$log', products]);
+.controller('productCtrl', ['$scope', 'productResources', '$log', 'controllerCommons', products]);
 
-function products(scope, productRestDAO, $log) {
+function products(scope, productResources, $log, controllerCommons) {
+
+    //product resource class
+    var Product = productResources.getClass();
+
+    //SIDEBAR
     scope.actions = [{
         label: 'actionExample',
         doit: function() {
@@ -15,30 +21,43 @@ function products(scope, productRestDAO, $log) {
         }
     }];
 
-    var p_itemlist = productRestDAO.list();
-    p_itemlist.then(function(itemlist) {
-        var newlist = angular.fromJson(itemlist, false);
-        scope.itemlist = newlist.itemslist;
-    }, function(reason) {
-        alert('Failed: ' + reason);
-    }, function(update) {
-        alert('Got notification: ' + update);
-    });
+    //GET ITEMS
+    //TODO: SPINNER TOEVOEGEN
+    scope.setItems = function(itemList) {
+        scope.itemlist = itemList;
+    };
 
-    //table sorting
-    scope.sortType = 'ID';
-    scope.sortReverse = false;
-    //table labels
-    scope.searchbox = {
+    var p_itemlist = Product.query().$promise;
+    scope.itemlist = controllerCommons.resolvePromise(p_itemlist, scope.setItems);
+
+
+    //table column sorting
+    scope.sorttype = 'ID';
+    scope.sortreverse = false;
+
+
+    //table search/filter
+    scope.searchaction = {
+        selectedcategory: 'id',
+        query: '',
         actionLabel: 'filter',
-        categories: [{
-            name: 'date'
+        go: function() {
+
+        },
+        searchcategories : [{
+            name: 'id'
+        }, {
+            name: 'name'
         }, {
             name: 'price'
         }, {
-            name: 'ID'
+            name: 'none'
         }, {
-            name: 'date'
+            name: 'description'
         }]
     };
+
+
+
+
 };

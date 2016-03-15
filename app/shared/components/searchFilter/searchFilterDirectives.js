@@ -2,6 +2,7 @@
 angular.module('concentrator.component.searchFilter')
 .directive('searchfilter', navSearchFilter)
 .directive('navsearchfilter', navSearchFilter)
+.directive('categorySelector', categorySelector)
 ;
 
 function filter() {
@@ -9,11 +10,10 @@ function filter() {
         restrict : 'E',
         transclude: true,
         scope: {
-            searchbox: '=',
             searchcategories: '=',
             searchaction: '='
         },
-        templateUrl: '/components/searchFilter/partials/navSearchFilter.html'
+        templateUrl: '/shared/components/searchFilter/partials/navSearchFilter.html'
     }
 }
 
@@ -21,10 +21,20 @@ function navSearchFilter(){
     return {
         restrict: 'E',
         scope: {
-            searchbox: '=',
             searchcategories: '=',
             searchaction: '='
         },
-        templateUrl: '/components/searchFilter/partials/navSearchFilter.html'
+        templateUrl: '/shared/components/searchFilter/partials/navSearchFilter.html'
+    }
+}
+
+function categorySelector(){
+    return {
+        restrict: 'E',
+        transclude: true,
+        scope: {
+            searchcategories: '='
+        },
+        templateUrl: '/shared/components/searchFilter/partials/categorySelector.html'
     }
 }

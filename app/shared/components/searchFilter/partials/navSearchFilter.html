@@ -1,0 +1,26 @@
+<form class="navbar-form navbar-input-group ">
+    <div class="form-group input-group-btn">
+
+        <input type="text"
+            class="form-control"
+            aria-label="query input"
+            ng-model="searchaction.query"
+            placeholder="query"
+            style="background-color: #FFF5ED;"
+            ng-change="searchaction.filterchange()">
+
+        <select uib-dropbown-menu
+            class="btn btn-default form-control"
+            aria-labelledby="simple-dropdown"
+            ng-options="category.name for category in searchaction.searchcategories"
+            ng-model="searchaction.querycategory"
+            ng-change="searchaction.filterchange()">
+        </select>
+
+        <button class="btn btn-default"
+            type="button"
+            ng-click="searchaction.go()">
+            {{searchaction.actionLabel}}
+        </button>
+    </div>
+</form>

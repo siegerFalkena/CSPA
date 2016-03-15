@@ -84,3 +84,7 @@ select {
 #sidebar-wrapper {
     width: 250px;
 }
+
+.even {
+  background-color:#f1f1f1;
+}

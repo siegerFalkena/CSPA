@@ -1,9 +1,9 @@
-<div class="col-md-2">
-	<div></div>
-	<a ng-repeat="action in actions track by $index" >
-		<h2 >{{action.label}}</h2>
-	</a>
-</div>
-<div class="col-md-9 col-md-offset-1">
-	<ng-include src="'components/concentrator/product/partials/productList.html'"></ng-include>
+<div class="divide-nav">
+
+    <navbar-tabs></navbar-tabs>
+
+    <div class="col-md-12">
+        <ng-include src="'components/concentrator/product/partials/productList.html'">
+        </ng-include>
+    </div>
 </div>

@@ -1,73 +1,77 @@
 <div class="row">
-	<searchfilter
-	searchbox="searchbox"
-	searchaction="searchaction"
-	></searchfilter>
+    <div class="col-xs-6">
+        <searchfilter
+            searchaction="searchaction">
+            </searchfilter>
+    </div>
+    <div class="col-xs-6">
+        <category-selector
+            searchcategories="searchaction.searchcategories">
+            </category-selector>
+    </div>
 </div>
 <div class="table-responsive">
-	<table class="table table-condensed table-bordered">
-		<thead>
-			<tr>
-				<td></td>
-				<td>
-					<a href="#" ng-click="sortType = 'ID'; sortReverse = !sortReverse">
-						ID
-						<span ng-show="sortType == 'ID' && !sortReverse" class="caret"></span>
-						<span ng-show="sortType == 'ID' && sortReverse" class="dropup">
-							<span class="caret"></span></span>
-						</a>
-					</td>
-					<td>
-						<a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-							name
-							<span ng-show="sortType == 'name' && !sortReverse" class="caret"></span>
-							<span ng-show="sortType == 'name' && sortReverse" class="dropup">
-								<span class="caret"></span>
-							</span>
-						</a>
-					</td>
-					<td>
-						<a href="#" ng-click="sortType = 'price'; sortReverse = !sortReverse">
-							price
-							<span ng-show="sortType == 'price' && !sortReverse" class="caret"></span>
-							<span ng-show="sortType == 'price' && sortReverse" class="dropup">
-								<span class="caret"></span></span>
-							</a>
-						</td>
-						<td></td>
-					</tr>
-				</thead>
-				<tr ng-repeat="item in itemlist | orderBy:sortType:sortReverse | filter:searchaction.query">
-					<td ng-if="$odd">
-						<input type="checkbox">
-					</td>
-					<td ng-if="$even" style="background-color:#f1f1f1">
-						<input type="checkbox">
-					</td>
-					<td ng-if="$odd">
-						{{item.ID}}
-					</td>
-					<td ng-if="$even" style="background-color:#f1f1f1">
-						{{item.ID}}
-					</td>
-					<td ng-if="$odd" >
-						{{item.name}}
-					</td>
-					<td ng-if="$even" style="background-color:#f1f1f1">
-						{{item.name}}
-					</td>
-					<td ng-if="$odd" >
-						{{item.price}}
-					</td>
-					<td ng-if="$even" style="background-color:#f1f1f1">
-						{{item.price}}
-					</td>
-					<td ng-if="$odd">
-						<button class="btn btn-default">view</button>
-					</td>
-					<td ng-if="$even" style="background-color:#f1f1f1">
-						<button class="btn btn-default">view</button>
-					</td>
-				</tr>
-			</table>
-		</div>
+    <table class="table table-condensed table-bordered">
+        <thead>
+            <tr>
+                <td>
+                </td>
+                <td ng-if="searchaction.searchcategories[0].shown">
+                    <a href="#"
+                        ng-click="sortType = 'ID'; sortReverse = !sortReverse">
+                    ID
+                    <span 
+                    ng-show="sortType == 'ID' && !sortReverse" 
+                    class="caret">
+                    </span>
+                    <span 
+                    ng-show="sortType == 'ID' && sortReverse" class="dropup">
+                        <span class="caret"></span></span>
+                    </a>
+                </td>
+                <td ng-if="searchaction.searchcategories[1].shown">
+                    <a href="#"
+                        ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                        name
+                        <span ng-show="sortType == 'name' && !sortReverse" class="caret"></span>
+                        <span ng-show="sortType == 'name' && sortReverse" class="dropup">
+                            <span class="caret"></span>
+                        </span>
+                    </a>
+                </td>
+                <td ng-if="searchaction.searchcategories[2].shown">
+                    <a href="#"
+                        ng-click="sortType = 'price'; sortReverse = !sortReverse">
+                        price
+                        <span ng-show="sortType == 'price' && !sortReverse" class="caret"></span>
+                        <span ng-show="sortType == 'price' && sortReverse" class="dropup">
+                            <span class="caret"></span></span>
+                        </a>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </thead>
+        <tr ng-repeat="item in itemlist
+                | orderBy:sortType:sortReverse
+                | filter:searchaction.search"
+            ng-class-even="'even'">
+            <td>
+                <input type="checkbox"
+                    id="select">
+            </td>
+            <td ng-if="searchaction.searchcategories[0].shown">
+                {{item.ID}}
+            </td>
+            <td ng-if="searchaction.searchcategories[1].shown">
+                {{item.name}}
+            </td>
+            <td ng-if="searchaction.searchcategories[2].shown">
+                {{item.price}}
+            </td>
+            <td>
+                <button class="btn btn-default btn-xs">view</button>
+            </td>
+        </tr>
+    </table>
+</div>

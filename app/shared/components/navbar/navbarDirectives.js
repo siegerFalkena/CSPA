@@ -2,7 +2,8 @@ angular.module('concentrator.component.navbar')
     .directive('dropdown', navbarDropdown)
     .directive('brand', brand)
     .directive('navbar', navbar)
-    .directive('navbarTabs', navbarTabs);
+    .directive('navbarTabs', navbarTabs)
+    .service('navbarConfig', config);
 
 function navbarDropdown() {
     return {
@@ -35,3 +36,32 @@ function navbarTabs() {
         templateUrl: '/shared/components/navbar/partials/navbarTabs.html'
     };
 };
+
+function config() {
+
+    this.brand = function() {
+        return {
+            label: 'Jumbo',
+            url: '/',
+            imgSrc: 'assets/images/jumbo.png'
+        }
+    };
+
+
+    this.items = function() {
+        return [{
+            name: 'name',
+            url: '#/url'
+        }]
+    };
+
+    this.admin = function() {
+        return {
+            title: 'Admin',
+            links: [{
+                name: 'users',
+                url: '#/users'
+            }]
+        }
+    };
+}

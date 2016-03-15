@@ -2,6 +2,7 @@
 angular.module('concentrator.component.product', [
     'ui.bootstrap',
     'concentrator.component.list',
+    'concentrator.component.selector',
     'concentrator.service.resource',
     'concentrator.service.controllerUtils'
 ])
@@ -11,13 +12,20 @@ angular.module('concentrator.component.product', [
     'productResources',
     '$log',
     'controllerCommons',
+    'selectorConfig',
     products
 ]);
 
-function products(scope, productResources, $log, controllerCommons) {
+function products(
+    scope,
+    productResources,
+    $log,
+    controllerCommons,
+    selectorConfig) {
 
     //product resource class
     var Product = productResources.getClass();
+
 
     //SIDEBAR
     scope.actions = {

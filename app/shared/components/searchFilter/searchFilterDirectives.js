@@ -1,13 +1,12 @@
 'use strict';
 angular.module('concentrator.component.searchFilter')
-.directive('searchfilter', navSearchFilter)
-.directive('navsearchfilter', navSearchFilter)
-.directive('categorySelector', categorySelector)
-;
+    .directive('searchfilter', navSearchFilter)
+    .directive('navsearchfilter', navSearchFilter)
+    .service('searchFilterConfig', config);
 
 function filter() {
     return {
-        restrict : 'E',
+        restrict: 'E',
         transclude: true,
         scope: {
             searchcategories: '=',
@@ -17,9 +16,10 @@ function filter() {
     }
 }
 
-function navSearchFilter(){
+function navSearchFilter() {
     return {
         restrict: 'E',
+        transclude: true,
         scope: {
             searchcategories: '=',
             searchaction: '='
@@ -28,13 +28,24 @@ function navSearchFilter(){
     }
 }
 
-function categorySelector(){
-    return {
-        restrict: 'E',
-        transclude: true,
-        scope: {
-            searchcategories: '='
-        },
-        templateUrl: '/shared/components/searchFilter/partials/categorySelector.html'
-    }
+
+function config() {
+    var filterConfig = function filterConfigF() {
+        return {
+            query: '',
+            search: {
+                Product: '',
+                Vendor: '',
+                Category: '',
+                Attribute: ''
+            },
+            actionLabel: 'Search',
+            f_doSearch: function() {
+
+            },
+            searchcategories: [{
+                name: 'name'
+            }]
+        }
+    };
 }

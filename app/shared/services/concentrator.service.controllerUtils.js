@@ -1,12 +1,10 @@
 'use strict';
-angular.module('concentrator.service.controllerUtils', [
-
-               ])
+angular.module('concentrator.service.controllerUtils', [])
 
 .service('controllerCommons', ['$log', controllerCommons]);
 
 
-function controllerCommons($log){
+function controllerCommons($log) {
 
     this.resolvePromise = function resolvePromise(promise, callback) {
         promise.then(function(item) {

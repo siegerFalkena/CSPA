@@ -2,19 +2,29 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/ui-bootstrap-csp.css">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="simple-sidebar.css">
+    <link rel="stylesheet"
+        type="text/css"
+        href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        type="text/css"
+        href="assets/css/ui-bootstrap-csp.css">
+    <link rel="stylesheet"
+        type="text/css"
+        href="stylesheet.css">
+    <link rel="stylesheet"
+        type="text/css"
+        href="simple-sidebar.css">
 </head>
 
 <body ng-app="concentrator">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row"
+            ng-controller="navbarCtrl">
             <navbar></navbar>
             </hr>
         </div>
-        <div class="row" style="margin-top: 50px;">
+        <div class="row"
+            style="margin-top: 50px;">
             <div ui-view></div>
         </div>
     </div>
@@ -37,8 +47,10 @@
 <script src="shared/components/navbar/navbar.js"></script>
 <script src="shared/components/navbar/navbarDirectives.js"></script>
 <script src="shared/components/list/list.js"></script>
-<script src="components/concentrator/product/product.js"></script>
-<script src="components/concentrator/product/productDirectives.js"></script>
+<script src="shared/components/selector/selector.js"></script>
+<script src="shared/components/selector/selectorDirectives.js"></script>
+<script src="concentrator/product/product.js"></script>
+<script src="concentrator/navbar/navbarController.js"></script>
 <script src="shared/components/searchFilter/searchFilter.js"></script>
 <script src="shared/components/searchFilter/searchFilterDirectives.js"></script>
 

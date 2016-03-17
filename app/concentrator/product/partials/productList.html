@@ -9,18 +9,21 @@
         </selector>
     </div>
 </div>
+<div class="row">
+    <messagelist
+        messages="messages"></messagelist>
+</div>
 <div class="table-responsive">
     <table class="table table-condensed table-bordered">
         <thead>
             <tr>
                 <td>
                 </td>
-                <td ng-if="searchaction.searchcategories[0].shown">
-                    <a href="#"
-                        ng-click="sortType = 'ID'; sortReverse = !sortReverse">
+                <td ng-show="searchaction.searchcategories[0].shown">
+                    <a ng-click="sortType = 'ID'; sortReverse = !sortReverse">
                     ID
                     <span 
-                    ng-show="sortType == 'ID' && !sortReverse" 
+                    ng-show="sortaction.sortType == 'ID' && !sortReverse" 
                     class="caret">
                     </span>
                     <span 
@@ -28,9 +31,8 @@
                         <span class="caret"></span></span>
                     </a>
                 </td>
-                <td ng-if="searchaction.searchcategories[1].shown">
-                    <a href="#"
-                        ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                <td ng-show="searchaction.searchcategories[1].shown">
+                    <a ng-click="sortType = 'name'; sortReverse = !sortReverse">
                         name
                         <span ng-show="sortType == 'name' && !sortReverse" class="caret"></span>
                         <span ng-show="sortType == 'name' && sortReverse" class="dropup">
@@ -38,9 +40,8 @@
                         </span>
                     </a>
                 </td>
-                <td ng-if="searchaction.searchcategories[2].shown">
-                    <a href="#"
-                        ng-click="sortType = 'price'; sortReverse = !sortReverse">
+                <td ng-show="searchaction.searchcategories[2].shown">
+                    <a ng-click="sortType = 'price'; sortReverse = !sortReverse">
                         price
                         <span ng-show="sortType == 'price' && !sortReverse" class="caret"></span>
                         <span ng-show="sortType == 'price' && sortReverse" class="dropup">
@@ -59,13 +60,13 @@
                 <input type="checkbox"
                     id="select">
             </td>
-            <td ng-if="searchaction.searchcategories[0].shown">
+            <td ng-show="searchaction.searchcategories[0].shown">
                 {{item.ID}}
             </td>
-            <td ng-if="searchaction.searchcategories[1].shown">
+            <td ng-show="searchaction.searchcategories[1].shown">
                 {{item.name}}
             </td>
-            <td ng-if="searchaction.searchcategories[2].shown">
+            <td ng-show="searchaction.searchcategories[2].shown">
                 {{item.price}}
             </td>
             <td>

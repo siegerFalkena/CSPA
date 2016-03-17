@@ -10,7 +10,7 @@ function navbarCtrl(scope) {
     scope.brand = {
         name: 'Jumbo',
         url: '/',
-        imgSrc: 'assets/images/jumbo.png'
+        imgSrc: 'assets/images/circle_gradient.png'
     };
 
     scope.diract = {
@@ -31,6 +31,12 @@ function navbarCtrl(scope) {
     }, {
         name: 'Categories',
         url: '#/category'
+    }, {
+        name: 'Orders',
+        url: '#/order'
+    }, {
+        name: 'Events',
+        url: '#/event'
     }, {
         name: 'Documentation',
         url: '#/documentation'

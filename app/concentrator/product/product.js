@@ -4,7 +4,9 @@ angular.module('concentrator.component.product', [
     'concentrator.component.list',
     'concentrator.component.selector',
     'concentrator.service.resource',
-    'concentrator.service.controllerUtils'
+    'concentrator.service.controllerUtils',
+    'concentrator.component.messagelist',
+    'angular-toArrayFilter'
 ])
 
 .controller('productCtrl', [
@@ -26,6 +28,9 @@ function products(
     //product resource class
     var Product = productResources.getClass();
 
+    //table column sorting
+
+
 
     //SIDEBAR
     scope.actions = {
@@ -44,32 +49,53 @@ function products(
     var p_itemlist = Product.query().$promise;
     scope.itemlist =
         controllerCommons.resolvePromise(p_itemlist, scope.cb_setItems);
-
-
-    //table column sorting
-    scope.sorttype = 'ID';
-    scope.sortreverse = false;
-
+    scope.messages = [{
+        class: "alert alert-success",
+        message: "notification",
+        close: function() {
+            messages.remove(this);
+        }
+    }]
 
     //table search/filter
 
     //only filter on selectedCategories
     //filter on 'any'
     //filter on selected category
-    scope.searchaction = {
+    scope.searchaction = filterConfig();
+
+};
+
+
+function filterConfig() {
+    return {
         query: '',
-        querycategory: '',
-        filterchange: function() {
-            this.search = {};
-            this.search[this.querycategory.name] = this.query;
-            console.log(this);
-        },
+        querycategory: (function() {
+            //private
+            return {
+                //public
+            }
+        }()),
         search: {},
-        actionLabel: 'Search',
-        go: function() {
-            scope.itemlist =
-                controllerCommons.resolvePromise(p_itemlist, scope.cb_setItems);
+        filterchange: function(searchaction) {
+            this.debug()
+            var object = angular.fromJson(searchaction.querycategory);
+            searchaction.search = {};
+            if (object.name == '*') {
+                searchaction.search = searchaction.query;
+            } else {
+                searchaction.search[object.name] = searchaction.query;
+            }
         },
+        optionany: true,
+        actionLabel: 'Add filter',
+        go: function(searchaction) {
+            searchaction.debug();
+        },
+        searchmetacategories: [{
+            name: '*',
+            shown: true
+        }],
         searchcategories: [{
             name: 'ID',
             shown: true
@@ -79,11 +105,12 @@ function products(
         }, {
             name: 'price',
             shown: true
-        }]
+        }],
+        debug: function() {
+            console.log(this);
+        },
+        sortType: 'ID',
+        sortReverse: false
 
     };
-
-
-
-
-};
+}

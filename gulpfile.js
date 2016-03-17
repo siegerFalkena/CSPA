@@ -66,6 +66,8 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'],
                 SRC +
                 'assets/bower/angular/angular.min.js',
                 SRC +
+                'assets/bower/angular-toArrayFilter/toArrayFilter.js',
+                SRC +
                 'assets/bower/angular-animate/angular-animate.min.js',
                 SRC +
                 'assets/bower/angular-resource/angular-resource.min.js',

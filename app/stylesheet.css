@@ -1,46 +1,47 @@
-
-
 .slide-animate-container {
-  position:relative;
-  background:white;
-  border:1px solid black;
-  height:40px;
-  overflow:hidden;
+    position: relative;
+    background: white;
+    border: 1px solid black;
+    height: 40px;
+    overflow: hidden;
 }
 
 .slide-animate {
-  padding:10px;
+    padding: 10px;
 }
 
-.slide-animate.ng-enter, .slide-animate.ng-leave {
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  display:block;
-  padding:10px;
+.slide-animate.ng-enter,
+.slide-animate.ng-leave {
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    padding: 10px;
 }
 
 .slide-animate.ng-enter {
-  top:-50px;
+    top: -50px;
 }
+
 .slide-animate.ng-enter.ng-enter-active {
-  top:0;
+    top: 0;
 }
 
 .slide-animate.ng-leave {
-  top:0;
+    top: 0;
 }
+
 .slide-animate.ng-leave.ng-leave-active {
-  top:50px;
+    top: 50px;
 }
 
 select {
-  max-width: 200px;
+    max-width: 200px;
 }
+
 @media (max-width: 1200px) {
     .navbar-header {
         float: none;
@@ -50,7 +51,7 @@ select {
     }
     .navbar-collapse {
         border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     .navbar-collapse.collapse {
         display: none!important;
@@ -71,20 +72,34 @@ select {
         margin: 15px 0;
     }
     /* since 3.1.0 */
-    .navbar-collapse.collapse.in { 
+    .navbar-collapse.collapse.in {
         display: block!important;
     }
     .collapsing {
         overflow: hidden!important;
     }
 }
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-@media (min-width: 768px)
-#sidebar-wrapper {
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+    cursor: pointer;
+}
+
+.menuitem {
+    position: relative;
+    z-index: 0;
+}
+
+@media (min-width: 768px) #sidebar-wrapper {
     width: 250px;
 }
 
 .even {
-  background-color:#f1f1f1;
+    background-color: #f1f1f1;
+}
+
+.nav {
+    z-index: 1000;
 }

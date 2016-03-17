@@ -12,66 +12,69 @@ angular.module('concentrator')
         }
     ])
     .config(
-            ['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
-    function ($stateProvider,   $urlRouterProvider,   $urlMatcherFactoryProvider) {
+        ['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
+            function($stateProvider, $urlRouterProvider,
+                $urlMatcherFactoryProvider) {
 
-      $urlMatcherFactoryProvider.type('contact', ['contacts', function(contacts) {
-        return {
-          encode: function(contact) {
-            return contact.id;
-          },
-          decode: function(id) {
-            return contacts.get(id);
-          },
-          pattern: /[0-9]{1,4}/
-        };
-      }]);
+                $urlMatcherFactoryProvider.type('contact', ['contacts',
+                    function(contacts) {
+                        return {
+                            encode: function(contact) {
+                                return contact.id;
+                            },
+                            decode: function(id) {
+                                return contacts.get(id);
+                            },
+                            pattern: /[0-9]{1,4}/
+                        };
+                    }
+                ]);
 
-      /////////////////////////////
-      // Redirects and Otherwise //
-      /////////////////////////////
+                /////////////////////////////
+                // Redirects and Otherwise //
+                /////////////////////////////
 
-      // Use $urlRouterProvider to configure any redirects (when) and invalid urls (otherwise).
-      $urlRouterProvider
+                // Use $urlRouterProvider to configure any redirects (when) and invalid urls (otherwise).
+                $urlRouterProvider
 
-        // The `when` method says if the url is ever the 1st param, then redirect to the 2nd param
-        // Here we are just setting up some convenience urls.
-        // .when('/c?id', '/contacts/:id')
-        // .when('/user/:id', '/contacts/:id')
+                // The `when` method says if the url is ever the 1st param, then redirect to the 2nd param
+                // Here we are just setting up some convenience urls.
+                // .when('/c?id', '/contacts/:id')
+                // .when('/user/:id', '/contacts/:id')
 
-        // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
-        .otherwise('/');
+                // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
+                    .otherwise('/');
 
 
-      //////////////////////////
-      // State Configurations //
-      //////////////////////////
+                //////////////////////////
+                // State Configurations //
+                //////////////////////////
 
-      // Use $stateProvider to configure your states.
-      $stateProvider
+                // Use $stateProvider to configure your states.
+                $stateProvider
 
-        //////////
-        // Home //
-        //////////
+                //////////
+                // Home //
+                //////////
 
-        .state("product", {
-          url: '/product',
-          controller: 'productCtrl',
-          templateUrl: 'components/concentrator/product/product.html'
-        })
-        .state("vendor", {
-          url: '/vendor',
-          templateUrl: 'components/concentrator/vendor/vendor.html'
-        })
-        .state("attribute", {
-          url: '/attribute',
-          templateUrl: 'components/concentrator/attribute/attribute.html'
-        })
-        .state("category", {
-          url: '/category',
-          templateUrl: 'components/concentrator/category/category.html'
-        });
-        
-    }
-  ]
-);
+                    .state("product", {
+                        url: '/product',
+                        controller: 'productCtrl',
+                        templateUrl: 'concentrator/product/product.html'
+                    })
+                    .state("vendor", {
+                        url: '/vendor',
+                        templateUrl: 'components/concentrator/vendor/vendor.html'
+                    })
+                    .state("attribute", {
+                        url: '/attribute',
+                        templateUrl: 'components/concentrator/attribute/attribute.html'
+                    })
+                    .state("category", {
+                        url: '/category',
+                        templateUrl: 'components/concentrator/category/category.html'
+                    });
+
+            }
+        ]
+    );

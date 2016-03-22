@@ -66,6 +66,10 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'],
                 SRC +
                 'assets/bower/angular/angular.min.js',
                 SRC +
+                'assets/bower/underscore/underscore-min.js',
+                SRC +
+                'assets/bower/angular-ui-grid/ui-grid.min.js',
+                SRC +
                 'assets/bower/angular-toArrayFilter/toArrayFilter.js',
                 SRC +
                 'assets/bower/angular-animate/angular-animate.min.js',
@@ -90,9 +94,19 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'],
 gulp.task('copyCSS', ['copyFonts'], function() {
     return gulp.src([
             SRC +
-            'assets/bower/angular-bootstrap/ui-bootstrap-csp.css',
+            'metro-bootstrap.css',
             SRC +
-            'assets/bower/bootstrap/dist/css/bootstrap.min.css',
+            'ui-grid.css',
+            SRC +
+            'assets/bower/angular-ui-grid/ui-grid.woff',
+            SRC +
+            'assets/bower/angular-ui-grid/ui-grid.ttf',
+            SRC +
+            'assets/bower/angular-ui-grid/ui-grid.min.css',
+            SRC +
+            'assets/bower/angular-ui-grid/ui-grid.svg',
+            SRC +
+            'assets/bower/angular-ui-grid/ui-grid.eot',
             SRC + 'stylesheet.css'
         ])
         .pipe(changed(DIST + 'assets/css/'))
@@ -102,7 +116,7 @@ gulp.task('copyCSS', ['copyFonts'], function() {
 gulp.task('copyFonts', function() {
     return gulp.src([
             SRC +
-            'assets/fonts/glyphicons-halflings-regular.woff2'
+            'assets/fonts/glyphicons-halflings-regular.woff2',
         ])
         .pipe(changed(DIST + 'assets/fonts/'))
         .pipe(gulp.dest(DIST + 'assets/fonts/'));

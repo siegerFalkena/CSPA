@@ -26,20 +26,11 @@ function navbarCtrl(scope) {
         name: 'Vendors',
         url: '#/vendor'
     }, {
-        name: 'Attributes',
-        url: '#/attribute'
-    }, {
         name: 'Categories',
         url: '#/category'
     }, {
         name: 'Orders',
         url: '#/order'
-    }, {
-        name: 'Events',
-        url: '#/event'
-    }, {
-        name: 'Documentation',
-        url: '#/documentation'
     }];
 
     scope.admin = {

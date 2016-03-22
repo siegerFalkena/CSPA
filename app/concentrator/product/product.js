@@ -6,7 +6,8 @@ angular.module('concentrator.component.product', [
     'concentrator.service.resource',
     'concentrator.service.controllerUtils',
     'concentrator.component.messagelist',
-    'angular-toArrayFilter'
+    'angular-toArrayFilter',
+    'ui.grid'
 ])
 
 .controller('productCtrl', [
@@ -14,7 +15,6 @@ angular.module('concentrator.component.product', [
     'productResources',
     '$log',
     'controllerCommons',
-    'selectorConfig',
     products
 ]);
 
@@ -53,7 +53,13 @@ function products(
         class: "alert alert-success",
         message: "notification",
         close: function() {
-            messages.remove(this);
+            var index = 0;
+            for (var message in messages) {
+                if (message.class == this && message.message == this.message) {
+                    messages.splice(index, 1);
+                }
+                index = index + 1;
+            }
         }
     }]
 

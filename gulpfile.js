@@ -66,6 +66,8 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'],
                 SRC +
                 'assets/bower/angular/angular.min.js',
                 SRC +
+                'assets/bower/angular-localization/angular-localization.js',
+                SRC +
                 'assets/bower/underscore/underscore-min.js',
                 SRC +
                 'assets/bower/angular-ui-grid/ui-grid.min.js',

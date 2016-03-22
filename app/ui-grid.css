@@ -549,9 +549,6 @@ input[type="text"].ui-grid-filter-input:hover {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 12px 12px -14px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 12px 12px -14px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 12px 12px -14px rgba(0, 0, 0, 0.2);
 }
 .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button {
   position: absolute;
@@ -603,8 +600,6 @@ input[type="text"].ui-grid-filter-input:hover {
 .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button.active {
   outline: 0;
   background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button.disabled,
 .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button[disabled],
@@ -612,8 +607,6 @@ fieldset[disabled] .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button 
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 a.ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button.disabled,
 fieldset[disabled] a.ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button {
@@ -692,14 +685,8 @@ fieldset[disabled] .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button.
 }
 .ui-grid-menu .ui-grid-menu-inner ul li button:hover,
 .ui-grid-menu .ui-grid-menu-inner ul li button:focus {
-  -webkit-box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.2);
 }
 .ui-grid-menu .ui-grid-menu-inner ul li button.ui-grid-menu-item-active {
-  -webkit-box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.2);
   background-color: #cecece;
 }
 .ui-grid-menu .ui-grid-menu-inner ul li:not(:last-child) > button {
@@ -980,8 +967,6 @@ fieldset[disabled] .ui-grid-menu .ui-grid-menu-inner .ui-grid-menu-close-button.
 .ui-grid-focuser:focus {
   border-color: #66afe9;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 .ui-grid-offscreen {
   display: block;
@@ -1180,7 +1165,6 @@ div.ui-grid-cell input.ng-valid {
   position: absolute;
   top: 0;
   border: 1px solid #d4d4d4;
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.2);
 }
 .movingColumn .ui-grid-icon-angle-down {
   display: none;
@@ -1292,8 +1276,6 @@ div.ui-grid-cell input.ng-valid {
 .ui-grid-pager-control button.active {
   outline: 0;
   background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 .ui-grid-pager-control button.disabled,
 .ui-grid-pager-control button[disabled],
@@ -1372,8 +1354,6 @@ fieldset[disabled] .ui-grid-pager-control button.focus {
   background-image: none;
   border: 1px solid #cccccc;
   border-radius: 0px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
@@ -1390,8 +1370,6 @@ fieldset[disabled] .ui-grid-pager-control button.focus {
 .ui-grid-pager-control input:focus {
   border-color: #66afe9;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 .ui-grid-pager-control input::-moz-placeholder {
   color: #999999;
@@ -1499,8 +1477,6 @@ select[multiple].ui-grid-pager-control input {
   background-image: none;
   border: 1px solid #cccccc;
   border-radius: 0px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
@@ -1516,8 +1492,6 @@ select[multiple].ui-grid-pager-control input {
 .ui-grid-pager-row-count-picker select:focus {
   border-color: #66afe9;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 .ui-grid-pager-row-count-picker select::-moz-placeholder {
   color: #999999;

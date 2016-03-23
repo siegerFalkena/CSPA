@@ -2,11 +2,12 @@ angular.module('concentrator.concentrator.navbar', [
         'ngAnimate',
         'ui.bootstrap',
         'concentrator.component.searchFilter',
-        'concentrator.component.navbar'
+        'concentrator.component.navbar',
+        'concentrator.shared.localization'
     ])
-    .controller('navbarCtrl', ['$scope', navbarCtrl]);
+    .controller('navbarCtrl', ['$scope', 'l10n', navbarCtrl]);
 
-function navbarCtrl(scope) {
+function navbarCtrl(scope, l10n) {
     scope.brand = {
         name: 'Jumbo',
         url: '/',
@@ -44,6 +45,10 @@ function navbarCtrl(scope) {
         }]
     };
 
+    scope.languages = '';
+
+
+    scope.languageTitle = 'languages';
     scope.navaction = {
         query: '',
         search: {

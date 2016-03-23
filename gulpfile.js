@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     injectReload = require('gulp-inject-reload'),
     bower = require('gulp-bower'),
     express = require('express'),
+    cookieParser = require('cookie-parser'),
     Server = require('karma').Server;
 
 var SRC = './app/',
@@ -67,6 +68,8 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'],
                 'assets/bower/angular/angular.min.js',
                 SRC +
                 'assets/bower/angular-localization/angular-localization.js',
+                SRC +
+                'assets/bower/angular-sanitize/angular-sanitize.min.js',
                 SRC +
                 'assets/bower/underscore/underscore-min.js',
                 SRC +
@@ -171,7 +174,9 @@ gulp.task('runTestServer', function(done) {
 
 gulp.task('buildWatcher', function() {
     util.log('watching ' + SRC + ' for build');
-    return gulp.watch([SRC + '**/*.*', SRC + '*.*'], [
+    return gulp.watch([SRC + '**/*.*', SRC + '*.*', '!' + SRC +
+        '/assets/bower/**/*.*', excludeBowerImports[1]
+    ], [
         'devBuild'
     ]);
 })
@@ -187,13 +192,19 @@ gulp.task('reloadWatcher', function() {
 var appServ;
 gulp.task('devServer', function() {
     appServ = express();
-    var router = express.Router();
-    expressRESTservice(router);
+    var REST = express.Router();
+    expressRESTservice(REST);
+    var auth = express.Router();
+    expressAuthService(auth);
+
     lr = require('tiny-lr')();
     lr.listen(LIVERELOAD_PORT);
     var root = __dirname + '\\dist';
     util.log(root);
-    appServ.use('/REST', router);
+    appServ.use(cookieParser());
+    appServ.use('/REST', REST);
+    appServ.use('/AUTH', auth);
+    appServ.use('/LANG', express.static(root + '\\language'));
     appServ.use('/', express.static(root));
     appServ.use(require('connect-livereload')());
     appServ.listen(PORT);
@@ -205,6 +216,43 @@ gulp.task('devEnv', function() {
         'buildWatcher', 'reloadWatcher'
     ]);
 });
+
+function XorHash(string) {
+    var bytes = '';
+    var randomSeed = "abcdefghijklmnopqrsetuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (var i = 0; i < string.length; ++i) {
+        var temp = string.charCodeAt(i) ^ randomSeed.charCodeAt(i);
+        util.log(string.charCodeAt(i) + "\t^\t" +  randomSeed.charCodeAt(i) + "\t=" + temp)
+        bytes += String.fromCharCode(33+ temp);
+    }
+    return bytes;
+}
+
+function expressAuthService(router) {
+    function validAuthCookie(authCookie) {
+        util.log(authCookie);
+        return true;
+    };
+
+    router.post('/', function(req, res, cb) {
+        if (req.cookies.authToken == undefined) {
+            var authorization = req.header('authorization');
+            util.log(authorization);
+            res.cookie("authToken", authorization);
+        } else if (validAuthCookie(req.cookies.authToken)) {
+
+        };
+        res.jsonp({
+            token: XorHash(req.header('authorization')),
+            expires: 'probablynow',
+        });
+        cb();
+    });
+    router.get('/', function(req, res, cb) {
+        res.jsonp({ headers: req.headers });
+        cb();
+    })
+};
 
 function expressRESTservice(router) {
     router.get('/product/:id', function(req, res, cb) {

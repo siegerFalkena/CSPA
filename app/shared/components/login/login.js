@@ -1,7 +1,7 @@
 'use strict';
 angular.module('concentrator.service.login', [
 	'ngCookies'
-	]).service('loginService', ['$cookies', '$http'  loginService] );
+	]).service('loginService', ['$cookies', '$http',  loginService] );
 
 function loginService($cookies){
 	this.valid = function validF(item){

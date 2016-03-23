@@ -7,7 +7,8 @@ function selector() {
         restrict: 'E',
         transclude: true,
         scope: {
-            searchcategories: '='
+            searchcategories: '=',
+            title: '='
         },
         templateUrl: '/shared/components/selector/partials/selector.html'
     }

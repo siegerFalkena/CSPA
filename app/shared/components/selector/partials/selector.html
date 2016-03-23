@@ -1,12 +1,12 @@
 <span uib-dropdown
     on-toggle="toggled(open)">
-            <button 
+            <a 
             href class="btn btn-default btn-m" 
             id="simple-dropdown" 
             uib-dropdown-toggle>
-            Show properties<span class="caret"></span>
-</button>
-<ul uib-dropdown-menu
+            {{title}}<span class="caret"></span>
+</a>
+<ul uib-dropdown-menu class="nav navbar-nav" 
     aria-labelledby="simple-dropdown">
     <li role="menuitem"
         ng-repeat="category in searchcategories">

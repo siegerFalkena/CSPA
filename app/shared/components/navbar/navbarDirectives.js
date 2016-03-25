@@ -3,6 +3,7 @@ angular.module('concentrator.component.navbar')
     .directive('brand', brand)
     .directive('navbar', navbar)
     .directive('navbarTabs', navbarTabs)
+    .directive('localizationDropdown', localizationSelector)
     .service('navbarConfig', config);
 
 function navbarDropdown() {
@@ -34,6 +35,16 @@ function navbar() {
 function navbarTabs() {
     return {
         templateUrl: '/shared/components/navbar/partials/navbarTabs.html'
+    };
+};
+
+function localizationSelector() {
+    return {
+        restrict: 'E',
+        scope: {
+            languages: '='
+        },
+        templateUrl: '/shared/components/navbar/partials/languageSelector.html'
     };
 };
 

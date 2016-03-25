@@ -1,49 +1,35 @@
 'use strict';
 
-function localeProvider(localeString) {
-    return this;
-}
-
 angular.module('concentrator.shared.localization', ['concentrator.service.controllerUtils'])
-    .provider('l10n', [function() {
-        var localeFile = '';
-        this.supportedLanguages = [
-            'en-ie',
-            'nl-nl'
-        ];
-        this.$get = function($http, $locale, $log, $rootScope) {
 
-            //set DEFAULT LOCALE en-ie; Ireland > eng + € + dd/mm/yyyy
-            $locale.id = 'en-ie'
+.service('l10n', ['$locale', '$http', '$log', '$rootScope', l10n]);
 
-            function cb_success(response) {
-                $log.info('got languageFile: \t' + response.statusText + '\t' + response.status + '\t' + response.data);
-                localeFile = response.data;
-                console.log(response.data);
-                $rootScope.localeFile = response.data;
+function l10n($locale, $http, $log, $rootScope) {
+    this.supportedLanguages = [
+        { name: 'nl', id: 'nl-nl', flag: 'src', file: '/LANG/nl-nl.js' },
+        { name: 'ie', id: 'nl-nl', flag: 'src', file: '/LANG/en-ie.js' }
+    ]
 
-            };
+    this.curLang = this.supportedLanguages[1];
+    $rootScope.$watch(function(){
+        return this.curLang;
+    },
+    function(newVal, oldVal){
+        this.getLocaleF
+    })
+    this.getLocale = function getLocaleF() {
+        return $http.get(this.curLang.file);
+    };
 
-            function cb_fail(response) {
-                $log.info('failed to get languageFile: ' + response.statusText + response.data);
-            };
-
-            var p_langFile = $http.get('/lang/' + $locale.id + '.js').then(cb_success, cb_fail);
+    this.getL10nDirectiveConfig= function(){
+        return {
+            languages: this.supportedLanguages,
+            onChange: function(newLang){
+                this.curLang = newLang;
+            }
         }
-    }])
-    .service('l10n', ['$locale', '$log', '$rootScope', localization_service]);
-
-function localization_service($locale, $log, $rootScope) {
-    this.defaultLocale = 'en-ie';
-    this.onLanguageChanged = function(locale) {
-
-    }
-
-    this.getLocaleFile = function() {
-        return $rootScope.localeFile;
-    }
-
-}
+    };
+};
 
 function localization_directive() {
     return {

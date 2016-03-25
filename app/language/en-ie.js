@@ -1,12 +1,15 @@
 {
     "save": "Save",
-    "product": "Product",
+    "product": "Products",
     "vendor": "vendor",
     "category": "category",
-    "channels": "channels",
-    "orders": "Orders",
+    "channel": "channel",
+    "order": "Orders",
     "admin": "Admin",
+    "user": "User",
+    "logout": "Logout",
     "query": "Query",
     "search": "Search",
+    "any": "any",
     "show properties": "show properties"
 }

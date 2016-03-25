@@ -202,13 +202,13 @@ gulp.task('devServer', function() {
     var root = __dirname + '\\dist';
     util.log(root);
     appServ.use(cookieParser());
+    appServ.use('/auth', auth);
     appServ.use('/REST', REST);
-    appServ.use('/AUTH', auth);
     appServ.use('/LANG', express.static(root + '\\language'));
     appServ.use('/', express.static(root));
     appServ.use(require('connect-livereload')());
     appServ.listen(PORT);
-})
+});
 
 
 gulp.task('devEnv', function() {
@@ -222,40 +222,46 @@ function XorHash(string) {
     var randomSeed = "abcdefghijklmnopqrsetuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (var i = 0; i < string.length; ++i) {
         var temp = string.charCodeAt(i) ^ randomSeed.charCodeAt(i);
-        util.log(string.charCodeAt(i) + "\t^\t" +  randomSeed.charCodeAt(i) + "\t=" + temp)
-        bytes += String.fromCharCode(33+ temp);
+        bytes += String.fromCharCode(33 + temp);
     }
     return bytes;
 }
 
 function expressAuthService(router) {
-    function validAuthCookie(authCookie) {
-        util.log(authCookie);
-        return true;
-    };
-
-    router.post('/', function(req, res, cb) {
-        if (req.cookies.authToken == undefined) {
-            var authorization = req.header('authorization');
-            util.log(authorization);
-            res.cookie("authToken", authorization);
-        } else if (validAuthCookie(req.cookies.authToken)) {
-
-        };
-        res.jsonp({
-            token: XorHash(req.header('authorization')),
-            expires: 'probablynow',
-        });
+    router.post('/reauth', function(req, res, cb) {
+        var authKey = req.cookies.authToken;
+        var user = req.cookies.user;
+        if (authKey == undefined || user == undefined) {
+            res.sendStatus(403);
+        } else {
+            res.cookie("authToken", XorHash(authorization));
+            res.cookie("role", "admin");
+            res.sendStatus(200);
+        }
         cb();
     });
-    router.get('/', function(req, res, cb) {
-        res.jsonp({ headers: req.headers });
+
+    router.post('/auth', function(req, res, cb) {
+        var user = req.header('user');
+        var passwd = req.header('password');
+        //accepted
+        if(user == undefined || passwd == undefined){
+            res.sendStatus(403);
+        } else{
+            res.cookie("user", user);
+            res.cookie("authToken", XorHash(user + '\|' + passwd));
+            res.cookie("role", "admin");
+            res.sendStatus(200);
+        } 
         cb();
-    })
+    });
 };
 
 function expressRESTservice(router) {
     router.get('/product/:id', function(req, res, cb) {
+        if (req.cookies.authToken == undefined) {
+            res.sendStatus(403);
+        }
         res.json({
             ID: 4,
             name: 'granaatappel',

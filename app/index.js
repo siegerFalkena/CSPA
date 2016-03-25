@@ -11,9 +11,6 @@ angular.module('concentrator', [
         'concentrator.auth',
         'ngCookies'
     ]).config(['$cookiesProvider', '$httpProvider', function($cookiesProvider, $httpProvider) {
-        $cookiesProvider.defaults['secure'] = true;
-        $cookiesProvider.defaults['domain'] = 'localhost';
-        $httpProvider.defaults.headers.common = {'authentication': 'username:password'};
     }])
     .run(function($locale, $cookies, $log, l10n, auth) {
         //init locale
@@ -25,15 +22,5 @@ angular.module('concentrator', [
         } else {
             $locale.id = localeCookie;
         };
-        auth.doAuth("username", "password");
-
-        //init authCookie
-        if ($cookies.get('auth') == undefined) {
-                $log.info('incomplete session info; resetting');
-                $cookies.put('authKey', {});
-        } else {
-            $log.info('try reauth by cookie: ');
-        };
-
 
     })

@@ -2,30 +2,28 @@
     <div class="navbar-header">
         <brand brand="diract"></brand>
         <brand brand="brand"></brand>
-        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-            <span class="sr-only">Toggle navigation</span>
+        <button type="button" class="nav navbar-toggle navbar-btn" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">{{l10n.toggleNav}}Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
+        <localization-dropdown languages="languages"></localization-dropdown>
     </div>
     <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
         <ul class="nav navbar-nav">
             <li class="menuitem" ng-repeat="item in items track by $index">
-                <a href="{{item.url}}">{{item.name}}</a>
+                <a href="{{item.url}}"><h4>{{item.name}}</h4></a>
             </li>
         </ul>
-        <dropdown dropdown="admin" class="menuitem" style="position: relative;
-    z-index: 2;"></dropdown>
+        <h4><dropdown dropdown="admin" class="menuitem" style="position: relative;
+    z-index: 2;"></dropdown></h4>
         <ul class="nav navbar-nav">
             <li class="menuitem" style="padding-top: 10px">
                     <navSearchFilter searchaction="navaction"></navSearchFilter>
             </li>
         </ul>
-        <ul class="nav navbar-nav" style="padding-top:10px">
-            <li class="menuitem">
-                <selector searchcategories="languages" title="languageTitle"></selector>
-            </li>
-        </ul>
+        
+        
     </div>
 </nav>

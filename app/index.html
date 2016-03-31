@@ -3,27 +3,28 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    
     <link rel="stylesheet" type="text/css" href="assets/css/ui-grid.css">
     <link rel="stylesheet" type="text/css" href="assets/css/metro-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <link rel="stylesheet" type="text/css" href="simple-sidebar.css">
 </head>
 
-<body ng-app="concentrator">
-    <div class="container-fluid">
-        <div class="row" ng-controller="navbarCtrl">
-            <navbar></navbar>
-            </hr>
-        </div>
-        <div class="row" style="margin-top: 70px;">
-            <div ui-view></div>
-        </div>
+<body ng-app="concentrator" ng-controller="coreCtrl">
+    <div ng-if="!loginscreen">
+            <div class="row" ng-controller="navbarCtrl">
+                <navbar></navbar>
+                </hr>
+            </div>
+            <div class="row" style="margin-top: 70px;">
+                <div ui-view></div>
+            </div>
+    </div>
+    <div ng-if="loginscreen">
+        <loginscreen></loginscreen>
     </div>
 </body>
 <!--IMPORTS-->
 <script src="assets/js/angular.min.js"></script>
-
 <!--locale nl-->
 <script src="assets/js/angular-cookies.min.js"></script>
 <script src="assets/js/angular-animate.min.js"></script>
@@ -33,7 +34,6 @@
 <script src="assets/js/toArrayFilter.js"></script>
 <script src="assets/js/underscore-min.js"></script>
 <script src="assets/js/ui-grid.min.js"></script>
-
 <!--MODULES-->
 <script src="index.js"></script>
 <script src="shared/services/concentrator.service.resource.js"></script>
@@ -53,6 +53,5 @@
 <script src="shared/components/messageList/messageListDirectives.js"></script>
 <script src="shared/localization/concentrator.shared.localization.js"></script>
 <script src="shared/auth/loginProvider.js"></script>
-
 
 </html>

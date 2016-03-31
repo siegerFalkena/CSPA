@@ -8,6 +8,7 @@ angular.module('concentrator.auth', [])
 .service('auth', ['$http', '$log', '$cookies', '$rootScope', authProvider]);
 
 function authProvider($http, $log, $cookies, $rootScope){
+
     this.doAuth = function doAuthF(username, password){
         function cb_success (response){
             $log.info("authentication: " +response.status + "\t"+ response.statusText);
@@ -31,6 +32,17 @@ function authProvider($http, $log, $cookies, $rootScope){
             $log.info("reAuth: " + response.statusText + "\t" + response.status);
         }
         $http.get('/auth/reauth', config).then(cb_success, cb_failure);
+    };
+
+    this.isAuthed = function isAuthed(){
+        var authToken =  $cookies.get('authToken');
+        var user =  $cookies.get('user');
+        var role =  $cookies.get('role');
+        if(authToken == undefined || user == undefined ||  role == undefined){
+            return false;
+        } else {
+            return true
+        }
     };
 };
 

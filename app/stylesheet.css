@@ -92,9 +92,12 @@ select {
     z-index: 0;
 }
 
+
+/* 
 @media (min-width: 768px) #sidebar-wrapper {
     width: 250px;
 }
+ */
 
 .even {
     background-color: #f1f1f1;
@@ -102,4 +105,29 @@ select {
 
 .nav {
     z-index: 1000;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+.background-image {
+    background-image: url(/assets/images/man.jpg);
+    background-position: left bottom;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.background-title {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+11,0+100 */
+background: -moz-linear-gradient(left,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 11%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 11%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 11%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+
+}
+
+.background-transparent {
+    background-color: rgba(0, 0, 0, 0.0) ;
 }

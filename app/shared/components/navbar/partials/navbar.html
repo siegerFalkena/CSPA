@@ -8,9 +8,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <localization-dropdown languages="languages"></localization-dropdown>
     </div>
     <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
+        <a class="nav navbar-nav">
+            <localization-dropdown languages="languages" class="nav navbar-nav"></localization-dropdown>
+        </a>
         <ul class="nav navbar-nav">
             <li class="menuitem" ng-repeat="item in items track by $index">
                 <a href="{{item.url}}"><h4>{{item.name}}</h4></a>
@@ -18,12 +20,9 @@
         </ul>
         <h4><dropdown dropdown="admin" class="menuitem" style="position: relative;
     z-index: 2;"></dropdown></h4>
-        <ul class="nav navbar-nav">
-            <li class="menuitem" style="padding-top: 10px">
-                    <navSearchFilter searchaction="navaction"></navSearchFilter>
+        <ul class="nav navbar-nav" style="padding-top: 10px">
+            <li class="menuitem">
+                <navSearchFilter searchaction="navaction"></navSearchFilter>
             </li>
         </ul>
-        
-        
-    </div>
 </nav>

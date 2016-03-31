@@ -10,17 +10,27 @@ angular.module('concentrator', [
         'concentrator.shared.localization',
         'concentrator.auth',
         'ngCookies'
-    ]).config(['$cookiesProvider', '$httpProvider', function($cookiesProvider, $httpProvider) {
-    }])
-    .run(function($locale, $cookies, $log, l10n, auth) {
-        //init locale
-        var localeCookie = $cookies.get('locale');
-        if (localeCookie == undefined) {
-            $cookies.put('locale', l10n.defaultLocale);
-            $locale.id = l10n.defaultLocale
-            $log.info('cookie defaultLocale:' + l10n.defaultLocale);
-        } else {
-            $locale.id = localeCookie;
-        };
+    ]).config(['$cookiesProvider', '$httpProvider', function($cookiesProvider, $httpProvider) {}])
+    .run(runInit)
+    .controller('coreCtrl', ['$scope', 'auth', coreCtrl])
+    .directive('loginscreen', loginscreen);
 
-    })
+function coreCtrl($scope, auth) {
+    if (auth.isAuthed()) {
+        $scope.loginscreen = false
+    } else {
+        $scope.loginscreen = true
+    }
+}
+
+function loginscreen() {
+    return {
+        restrict: 'E',
+        transclude: true,
+        templateUrl: '/shared/auth/loginScreen.html'
+    }
+}
+
+function runInit($locale, $cookies, $log, l10n, auth) {
+
+}

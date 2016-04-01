@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/ui-grid.css">
     <link rel="stylesheet" type="text/css" href="assets/css/metro-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="simple-sidebar.css">
 </head>
 
 <body ng-app="concentrator" ng-controller="coreCtrl">
@@ -15,11 +13,11 @@
                 <navbar></navbar>
                 </hr>
             </div>
-            <div class="row" style="margin-top: 70px;">
+            <div class="row" style="padTop">
                 <div ui-view></div>
             </div>
     </div>
-    <div ng-if="loginscreen">
+    <div ng-if="loginscreen" class="fullscreen">
         <loginscreen></loginscreen>
     </div>
 </body>

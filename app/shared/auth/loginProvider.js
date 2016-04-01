@@ -5,7 +5,8 @@ angular.module('concentrator.auth', [])
 
     }
 }])
-.service('auth', ['$http', '$log', '$cookies', '$rootScope', authProvider]);
+.service('auth', ['$http', '$log', '$cookies', '$rootScope', authProvider])
+.controller('loginCtrl', ['$scope', '$cookies', '$log', 'auth', loginCtrl]);
 
 function authProvider($http, $log, $cookies, $rootScope){
 
@@ -44,6 +45,15 @@ function authProvider($http, $log, $cookies, $rootScope){
             return true
         }
     };
+
 };
+
+function loginCtrl($scope, $cookies, $log, auth){
+
+    $scope.login = function(){
+        auth.doAuth($scope.username, $scope.password);
+    }
+    $log.info($scope);
+}
 
 

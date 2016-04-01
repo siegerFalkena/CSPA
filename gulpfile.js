@@ -242,7 +242,7 @@ function expressAuthService(router) {
     });
 
     router.post('/auth', function(req, res, cb) {
-        var user = req.header('user');
+        var user = req.header('username');
         var passwd = req.header('password');
         //accepted
         if(user == undefined || passwd == undefined){

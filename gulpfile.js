@@ -101,7 +101,11 @@ gulp.task('copyCSS', ['copyFonts'], function() {
             SRC +
             'metro-bootstrap.css',
             SRC +
+            'assets/css/flags.css',
+            SRC +
             'ui-grid.css',
+            SRC +
+            "assets/bower/bootstrap/dist/css/bootstrap.min.css",
             SRC +
             'assets/bower/angular-ui-grid/ui-grid.woff',
             SRC +
@@ -121,7 +125,7 @@ gulp.task('copyCSS', ['copyFonts'], function() {
 gulp.task('copyFonts', function() {
     return gulp.src([
             SRC +
-            'assets/fonts/glyphicons-halflings-regular.woff2',
+            'assets/fonts/*.*'
         ])
         .pipe(changed(DIST + 'assets/fonts/'))
         .pipe(gulp.dest(DIST + 'assets/fonts/'));
@@ -129,10 +133,10 @@ gulp.task('copyFonts', function() {
 
 gulp.task('copyImages', function() {
     return gulp.src([
-            SRC + 'assets/images/*.*',
+            SRC + 'assets/img/*.*'
         ])
-        .pipe(changed(DIST + 'assets/images/'))
-        .pipe(gulp.dest(DIST + 'assets/images/'));
+        .pipe(changed(DIST + 'assets/img/'))
+        .pipe(gulp.dest(DIST + 'assets/img/'));
 });
 
 gulp.task('bower', function() {

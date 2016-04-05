@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/ui-grid.css">
     <link rel="stylesheet" type="text/css" href="assets/css/metro-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="/LANG/localeFlags/flags.css">
+    <link href="assets/css/flags.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body ng-app="concentrator" ng-controller="coreCtrl">
@@ -17,8 +19,8 @@
                 <div ui-view></div>
             </div>
     </div>
-    <div ng-if="loginscreen" class="fullscreen">
-        <loginscreen></loginscreen>
+    <div ng-if="loginscreen" class="fullscreen" ng-controller="loginCtrl" >
+        <loginscreen locale="l10n"></loginscreen>
     </div>
 </body>
 <!--IMPORTS-->

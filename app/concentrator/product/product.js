@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * 
+ */
 angular.module('concentrator.component.product', [
     'ui.bootstrap',
     'concentrator.component.list',

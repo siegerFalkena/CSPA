@@ -1,3 +1,7 @@
+/** core, bootstrap functions and initialization
+ * @module angular_module.concentrator
+ * @memberof angular_module
+ */
 'use strict';
 angular.module('concentrator', [
         'ngAnimate',
@@ -15,6 +19,13 @@ angular.module('concentrator', [
     .controller('coreCtrl', ['$scope', 'auth', coreCtrl])
     .directive('loginscreen', loginscreen);
 
+/**
+ * manages index.html landing
+ *
+ * @method     coreCtrl
+ * @param      {$scope}  $scope  { description }
+ * @param      {auth}  auth    @link concentrator.auth
+ */
 function coreCtrl($scope, auth) {
     if (auth.isAuthed()) {
         $scope.loginscreen = false

@@ -36,4 +36,7 @@ node_modules
 dist
 
 #bower dependencies
-app/assets/bower
+assets/bower
+
+#generated programmer reference
+documentation

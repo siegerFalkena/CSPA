@@ -7,12 +7,19 @@ var gulp = require('gulp'),
     bower = require('gulp-bower'),
     express = require('express'),
     cookieParser = require('cookie-parser'),
-    Server = require('karma').Server;
+    Server = require('karma').Server,
+    clean = require('gulp-clean'),
+    shell = require('gulp-shell');
+
 
 var SRC = './app/',
     src = SRC.substring(2, 100),
     DIST = './dist/',
     dist = DIST.substring(2, 100),
+    ASSET = './assets/',
+    asset = ASSET.substring(2, 100),
+    DOC = './documentation/',
+    doc = DOC.substring(2, 100),
     PORT = 4000,
     LIVERELOAD_PORT = 35729;
 //build, components
@@ -21,10 +28,9 @@ var excludeBowerImports = ['!' + src + 'assets/bower/*.*',
     '!' + src + 'assets/bower/**/*.*'
 ];
 
-gulp.task('build', ['components'], function() {
+gulp.task('build', ['components', 'docs'], function() {
     util.log(excludeBowerImports);
-    gulp.src([SRC + '**/*.*', excludeBowerImports[0],
-            excludeBowerImports[1]
+    gulp.src([SRC + '**/*.*'
         ])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));
@@ -64,59 +70,36 @@ gulp.task('components', function() {
 gulp.task('copycomponents', ['copyCSS', 'copyImages'],
     function() {
         return gulp.src([
-                SRC +
-                'assets/bower/angular/angular.min.js',
-                SRC +
-                'assets/bower/angular-localization/angular-localization.js',
-                SRC +
-                'assets/bower/angular-sanitize/angular-sanitize.min.js',
-                SRC +
-                'assets/bower/underscore/underscore-min.js',
-                SRC +
-                'assets/bower/angular-ui-grid/ui-grid.min.js',
-                SRC +
-                'assets/bower/angular-toArrayFilter/toArrayFilter.js',
-                SRC +
-                'assets/bower/angular-animate/angular-animate.min.js',
-                SRC +
-                'assets/bower/angular-resource/angular-resource.min.js',
-                SRC +
-                'assets/bower/angular-cookies/angular-cookies.min.js',
-                SRC +
-                'assets/bower/angular-route/angular-route.min.js',
-                SRC +
-                'assets/bower/angular-mocks/angular-mocks.js',
-                SRC +
-                'assets/bower/angular-ui-router/release/angular-ui-router.min.js',
-                SRC +
-                'assets/bower/angular-bootstrap/ui-bootstrap-tpls.min.js',
-                SRC +
-                'assets/bower/oclazyload/dist/ocLazyLoad.min.js'
+                ASSET + 'bower/angular/angular.min.js',
+                ASSET + 'bower/angular-localization/angular-localization.js',
+                ASSET + 'bower/angular-sanitize/angular-sanitize.min.js',
+                ASSET + 'bower/underscore/underscore-min.js',
+                ASSET + 'bower/angular-ui-grid/ui-grid.min.js',
+                ASSET + 'bower/angular-toArrayFilter/toArrayFilter.js',
+                ASSET + 'bower/angular-animate/angular-animate.min.js',
+                ASSET + 'bower/angular-resource/angular-resource.min.js',
+                ASSET + 'bower/angular-cookies/angular-cookies.min.js',
+                ASSET + 'bower/angular-route/angular-route.min.js',
+                ASSET + 'bower/angular-mocks/angular-mocks.js',
+                ASSET + 'bower/angular-ui-router/release/angular-ui-router.min.js',
+                ASSET + 'bower/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                ASSET + 'bower/oclazyload/dist/ocLazyLoad.min.js'
             ])
             .pipe(changed(DIST + 'assets/js/'))
             .pipe(gulp.dest(DIST + 'assets/js/'));
     });
 gulp.task('copyCSS', ['copyFonts'], function() {
     return gulp.src([
-            SRC +
-            'metro-bootstrap.css',
-            SRC +
-            'assets/css/flags.css',
-            SRC +
-            'ui-grid.css',
-            SRC +
-            "assets/bower/bootstrap/dist/css/bootstrap.min.css",
-            SRC +
-            'assets/bower/angular-ui-grid/ui-grid.woff',
-            SRC +
-            'assets/bower/angular-ui-grid/ui-grid.ttf',
-            SRC +
-            'assets/bower/angular-ui-grid/ui-grid.min.css',
-            SRC +
-            'assets/bower/angular-ui-grid/ui-grid.svg',
-            SRC +
-            'assets/bower/angular-ui-grid/ui-grid.eot',
-            SRC + 'stylesheet.css'
+            ASSET + 'css/metro-bootstrap.css',
+            ASSET + 'css/flags.css',
+            ASSET + 'css/ui-grid.css',
+           ASSET +  'bower/bootstrap/dist/css/bootstrap.min.css',
+            ASSET + 'bower/angular-ui-grid/ui-grid.woff',
+            ASSET + 'bower/angular-ui-grid/ui-grid.ttf',
+            ASSET + 'bower/angular-ui-grid/ui-grid.min.css',
+            ASSET + 'bower/angular-ui-grid/ui-grid.svg',
+            ASSET + 'bower/angular-ui-grid/ui-grid.eot',
+            ASSET + 'css/stylesheet.css'
         ])
         .pipe(changed(DIST + 'assets/css/'))
         .pipe(gulp.dest(DIST + 'assets/css/'));
@@ -124,8 +107,7 @@ gulp.task('copyCSS', ['copyFonts'], function() {
 
 gulp.task('copyFonts', function() {
     return gulp.src([
-            SRC +
-            'assets/fonts/*.*'
+            ASSET + 'fonts/*.*'
         ])
         .pipe(changed(DIST + 'assets/fonts/'))
         .pipe(gulp.dest(DIST + 'assets/fonts/'));
@@ -133,7 +115,7 @@ gulp.task('copyFonts', function() {
 
 gulp.task('copyImages', function() {
     return gulp.src([
-            SRC + 'assets/img/*.*'
+            ASSET + 'img/*.*'
         ])
         .pipe(changed(DIST + 'assets/img/'))
         .pipe(gulp.dest(DIST + 'assets/img/'));
@@ -145,6 +127,10 @@ gulp.task('bower', function() {
     });
 })
 
+var child_exec = require('child_process').exec;
+gulp.task('docs', function(done) {
+    child_exec('node ./node_modules/jsdoc/jsdoc.js -r -d ./documentation -c jsdoc.conf', undefined, done);
+});
 
 var lr;
 
@@ -159,12 +145,17 @@ function reloadCB(event) {
     });
 }
 
+gulp.task('cleanDocs', function(){
+    return gulp.src([DOC + '**/*.*', DOC + '*.*'], {read:false}).pipe(clean());
+});
+
 gulp.task('test', function() {
     gulp.src(
         'assets/bower/angular-mocks/angular-mocks.js'
     ).pipe(gulp.dest('assets/js/'));
     return sequence('devBuild', 'runTestServer');
 })
+
 
 gulp.task('runTestServer', function(done) {
     new Server({
@@ -176,12 +167,13 @@ gulp.task('runTestServer', function(done) {
     }).start();
 })
 
+
 gulp.task('buildWatcher', function() {
     util.log('watching ' + SRC + ' for build');
     return gulp.watch([SRC + '**/*.*', SRC + '*.*', '!' + SRC +
         '/assets/bower/**/*.*', excludeBowerImports[1]
     ], [
-        'devBuild'
+        'devBuild', 'docs'
     ]);
 })
 
@@ -249,14 +241,14 @@ function expressAuthService(router) {
         var user = req.header('username');
         var passwd = req.header('password');
         //accepted
-        if(user == undefined || passwd == undefined){
+        if (user == undefined || passwd == undefined) {
             res.sendStatus(403);
-        } else{
+        } else {
             res.cookie("user", user);
             res.cookie("authToken", XorHash(user + '\|' + passwd));
             res.cookie("role", "admin");
             res.sendStatus(200);
-        } 
+        }
         cb();
     });
 };

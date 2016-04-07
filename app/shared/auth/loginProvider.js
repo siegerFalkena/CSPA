@@ -1,20 +1,35 @@
 'use strict';
-angular.module('concentrator.auth', [
-        'ui.router',
-        'concentrator.shared.localization',
-        'concentrator.component.navbar'
-    ])
-    .provider('auth', [function() {
-        this.$get = function() {
-
-        }
-    }])
-    .service('auth', ['$http', '$log', '$cookies', '$window', authProvider])
+/**
+ *  @author Sieger
+ *  @module concentrator.auth
+ */
+angular.module('concentrator.auth')
+    .service('auth', ['$http', '$log', '$cookies', '$window', authService])
     .controller('loginCtrl', ['$scope', '$cookies', '$log', '$window', 'auth', 'l10n', loginCtrl]);
 
-function authProvider($http, $log, $cookies, $window) {
+/**
+ * Returns authService singleton service
+ *
+ * @instance
+ * @param      $http   $http  default angular http service
+ * @param      $log   $log     default angular log service
+ * @param      $cookies   $cookies default angular cookie management
+ * @param      $window   $window  default angular window object
+ * @inner
+ */
+function authService($http, $log, $cookies, $window) {
 
-    this.doAuth = function doAuthF(username, password, cb_result) {
+    this.doAuth = doAuthF;
+    /**
+     * authenticates user to server
+     *
+     * @method     doAuthF
+     * @param      string    username  
+     * @param      string    password  
+     * @param      Function  cb_result(boolean) callback function
+     * @memberof   authService
+     */
+    function doAuthF(username, password, cb_result) {
         function cb_success(response) {
             $log.info("authentication: " + response.status + "\t" + response.statusText);
             cb_result(true);
@@ -32,18 +47,16 @@ function authProvider($http, $log, $cookies, $window) {
         return temp;
     };
 
-    this.reauth = function reauthF() {
-        function cb_success(response) {
-            $log.info("reAuth: " + response.statusText);
-        }
 
-        function cb_failure(response) {
-            $log.info("reAuth: " + response.statusText + "\t" + response.status);
-        }
-        $http.get('/auth/reauth', config).then(cb_success, cb_failure);
-    };
-
-    this.isAuthed = function isAuthed() {
+    this.isAuthed = isAuthedF ;
+    /**
+     * Determine if authed.
+     *
+     * @method     isAuthed
+     * @return     boolean  true if all relevant authentication methods are set
+     * @memberof authService
+     */
+    function isAuthedF() {
         var authToken = $cookies.get('authToken');
         var user = $cookies.get('user');
         var role = $cookies.get('role');
@@ -54,7 +67,15 @@ function authProvider($http, $log, $cookies, $window) {
         }
     };
 
-    this.logout = function logout() {
+
+    this.logout = logoutF;
+    /**
+     * removes all authentication related information from storage
+     *
+     * @method     logout
+     * @memberof authService
+     */
+    function logoutF() {
         $cookies.remove("user");
         $cookies.remove("role");
         $cookies.remove("authToken");
@@ -63,6 +84,21 @@ function authProvider($http, $log, $cookies, $window) {
 
 };
 
+
+
+
+
+/**
+ * controller for login screen
+ *
+ * @method     loginCtrl
+ * @param      {$scope}  $scope    
+ * @param      {$cookies}  $cookies  
+ * @param      {$log}  $log      
+ * @param      {$window}  $window   window
+ * @param      {concentrator.auth}  auth      auth service
+ * @param      {concentrator.l10n}  l10n  locale service
+ */
 function loginCtrl($scope, $cookies, $log, $window, auth, l10n) {
 
     $scope.client = {

@@ -46,15 +46,16 @@
                     <li class="menuitem"><a href="#/user"><h5>{{locale.user}}</h5></a></li>
                 </ul>
             </li>
-            <li class="menuitem" id="single-button" uib-dropdown is-open="locale.isopen" >
+            <li class="menuitem" id="single-button" uib-dropdown is-open="localedropdown.isopen" >
                 <a href uib-dropdown-toggle>
-                    <img class="flag flag-{{locale.curlocale}}" style="margin-top: 5px"/>
+                    <img class="flag flag-{{currentlocale.name}}" style="border:none"/>
                 </a>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
                     <li class="menuitem" ng-repeat="supportedLanguage in supportedLanguages">
-                        <a ng-click="changeLocale()">
+
+                        <a ng-click="changelocale(supportedLanguage)">
                             <h4>{{supportedLanguage.name}} 
-                                <img class="flag flag-{{supportedLanguage.name}}" style="border:none;" />
+                                <img class="flag flag-{{supportedLanguage.name }}" style="border:none;" />
                             </h4>
                         </a>
                     </li>

@@ -21,8 +21,8 @@ function l10n($locale, $http, $log, $rootScope) {
 
 
     this.supportedLanguages = [
-        { name: 'nl', id: 'nl', flag: 'src', file: '/LANG/nl-nl.js' },
-        { name: 'en', id: 'en-gb', flag: 'src', file: '/LANG/en-ie.js' }
+        { name: 'nl', id: 'nl', flag: 'src', file: '/LANG/nl-nl.json' },
+        { name: 'gb', id: 'gb', flag: 'src', file: '/LANG/en-gb.json' }
     ];
     this.currentLang = this.supportedLanguages[1];
     this.changeLocale = changeLocale;
@@ -33,8 +33,8 @@ function l10n($locale, $http, $log, $rootScope) {
      * @method     changeLocale
      * @param      strLocale  locale as <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO-639-1</a>
      */
-    function changeLocale(scope, strLocale, onChangeFunctions) {
-
+    function changeLocale(supportedLanguage) {
+        this.currentLang = supportedLanguage;
     };
 
 

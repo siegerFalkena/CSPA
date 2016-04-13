@@ -1,11 +1,5 @@
-'use strict';
-/** Singleton service for localization
- *  @module angular_module.concentrator.l10n
- *  @memberof angular_module
- */
-angular.module('concentrator.shared.localization', ['concentrator.service.controllerUtils'])
 
-.service('l10n', ['$locale', '$http', '$log', '$rootScope', l10n]);
+angular.module('common.localization').service('l10n', ['$locale', '$http', '$log','$cookies', l10n]);
 
 
 /**
@@ -17,7 +11,7 @@ angular.module('concentrator.shared.localization', ['concentrator.service.contro
  * @param      $log        { description }
  * @param      $rootScope  { description }
  */
-function l10n($locale, $http, $log, $rootScope) {
+function l10n($locale, $http, $log, $cookies) {
 
 
     this.supportedLanguages = [
@@ -25,7 +19,7 @@ function l10n($locale, $http, $log, $rootScope) {
         { name: 'gb', id: 'gb', flag: 'src', file: '/LANG/en-gb.json' }
     ];
     this.currentLang = this.supportedLanguages[1];
-    this.currentLocale = undefined;
+    this.localefile = undefined;
    
     this.changeLocale = changeLocale;
     /**
@@ -35,25 +29,36 @@ function l10n($locale, $http, $log, $rootScope) {
      * @param      strLocale  locale as <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO-639-1</a>
      */
     function changeLocale(supportedLanguage) {
-        $log.info('pops');
-        this.currentLang = supportedLanguage;
-        this.init();
+        this.init(supportedLanguage);
     };
+
 
 
     this.init = init;
     /**
      * initializes a JSON locale object in scope. locale object contains identifier <locale> and bindings <english, translated> for translations
+     * Also persists language in the scope
      *
      * @method     init
      * @param      {$scope}    scope              scope object to create locale object in
      * @param      {Function}  onChangeFunctions  callback function without arguments for retranslating controller generated text 
-     * @param      {String}  strLocale   <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO-639-1</a> string for reinitializing language 
+     * @param      {Object}  [specificLanguage] languageObject akin to supportedLanguage format 
      */
-    function init() {
+    function init(specificLang) {
+        var cookieLang = $cookies.get('locale');
+        if(cookieLang != undefined){
+            this.currentLang = angular.fromJson(cookieLang);
+        } else {
+            this.currentLang = this.supportedLanguages[1];
+        };
+        if(specificLang != undefined) {
+            this.currentLang = specificLang;
+        };
         var l10nSingleton = this;
         function cb_success(res) {
-            l10nSingleton.currentLocale = res.data;
+            var data = res.data;
+            l10nSingleton.localefile = data;
+            $cookies.put('locale', angular.toJson(l10nSingleton.currentLang));
         };
 
         function cb_failure(res) {

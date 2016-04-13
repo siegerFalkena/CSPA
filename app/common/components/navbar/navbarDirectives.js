@@ -3,7 +3,6 @@ angular.module('concentrator.component.navbar')
     .directive('brand', brand)
     .directive('navbar', navbar)
     .directive('navbarTabs', navbarTabs)
-    .directive('localizationDropdown', localizationSelector)
     .service('navbarConfig', config);
 
 function navbarDropdown() {
@@ -12,7 +11,7 @@ function navbarDropdown() {
         scope: {
             dropdown: '='
         },
-        templateUrl: '/shared/components/navbar/partials/navDropdown.html'
+        templateUrl: '/common/components/navbar/partials/navDropdown.html'
     };
 };
 
@@ -22,31 +21,23 @@ function brand() {
         scope: {
             brand: '='
         },
-        templateUrl: '/shared/components/navbar/partials/navBrand.html'
+        templateUrl: '/common/components/navbar/partials/navBrand.html'
     };
 };
 
 function navbar() {
     return {
-        templateUrl: '/shared/components/navbar/partials/navbar.html'
+        templateUrl: '/common/components/navbar/partials/navbar.html'
     };
 };
 
 function navbarTabs() {
     return {
-        templateUrl: '/shared/components/navbar/partials/navbarTabs.html'
+        templateUrl: '/common/components/navbar/partials/navbarTabs.html'
     };
 };
 
-function localizationSelector() {
-    return {
-        restrict: 'E',
-        scope: {
-            languages: '='
-        },
-        templateUrl: '/shared/components/navbar/partials/languageSelector.html'
-    };
-};
+
 
 function config() {
 
@@ -54,7 +45,7 @@ function config() {
         return {
             label: 'Jumbo',
             url: '/',
-            imgSrc: 'assets/images/jumbo.png'
+            imgSrc: 'assets/img/jumbo.png'
         }
     };
 

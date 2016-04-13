@@ -3,8 +3,8 @@ angular.module('concentrator.concentrator.navbar', [
         'ui.bootstrap',
         'concentrator.component.searchFilter',
         'concentrator.component.navbar',
-        'concentrator.shared.localization',
-        'concentrator.auth'
+        'common.localization',
+        'common.auth'
     ])
     .controller('navbarCtrl', ['$scope', '$log', 'l10n', 'auth', navbarCtrl]);
 
@@ -29,7 +29,7 @@ function navbarCtrl($scope, $log, l10n, auth) {
     };
 
     $scope.l10n = l10n;
-    $scope.$watch('l10n.currentLocale', function(newValue, oldValue, scope) {
+    $scope.$watch('l10n.localefile', function(newValue, oldValue, scope) {
         if (newValue != undefined) {
             scope.locale = newValue;
         }

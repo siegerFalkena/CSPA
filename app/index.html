@@ -34,24 +34,32 @@
 <script src="assets/js/underscore-min.js"></script>
 <script src="assets/js/ui-grid.min.js"></script>
 
-<!--MODULES-->
+<!--MODELS-->
 <script src="index.js"></script>
-<script src="shared/services/concentrator.service.resource.js"></script>
-<script src="shared/services/concentrator.service.controllerUtils.js"></script>
+<script src="concentrator/model/product/concentrator.model.product.js"></script>
+<script src="concentrator/model/product/concentrator.model.product.resource.js"></script>
+<script src="concentrator/model/product/concentrator.model.product.directive.js"></script>
+<script src="concentrator/model/product/concentrator.model.product.controller.js"></script>
+
 <script src="routes.js"></script>
-<script src="shared/directives.js"></script>
-<script src="shared/components/navbar/navbar.js"></script>
-<script src="shared/components/navbar/navbarDirectives.js"></script>
-<script src="shared/components/selector/selector.js"></script>
-<script src="shared/components/selector/selectorDirectives.js"></script>
-<script src="concentrator/product/product.js"></script>
-<script src="concentrator/product/productDirectives.js"></script>
+<script src="common/directives.js"></script>
+<script src="common/components/navbar/navbar.js"></script>
+<script src="common/components/navbar/navbarDirectives.js"></script>
+<script src="common/components/selector/selector.js"></script>
+<script src="common/components/selector/selectorDirectives.js"></script>
 <script src="concentrator/navbar/navbarController.js"></script>
-<script src="shared/components/searchFilter/searchFilter.js"></script>
-<script src="shared/components/searchFilter/searchFilterDirectives.js"></script>
-<script src="shared/components/messageList/messageListDirectives.js"></script>
-<script src="shared/localization/concentrator.shared.localization.js"></script>
-<script src="shared/auth/concentrator.shared.auth.js"></script>
-<script src="shared/auth/loginProvider.js"></script>
+<script src="common/components/searchFilter/searchFilter.js"></script>
+<script src="common/components/searchFilter/searchFilterDirectives.js"></script>
+<script src="common/components/messageList/messageListDirectives.js"></script>
+
+     <!--LOCALIZATION-->
+<script src="common/localization/common.localization.js"></script>
+<script src="common/localization/common.localization.service.js"></script>
+<script src="common/localization/common.localization.directive.js"></script>
+    
+         <!--AUTHORIZATION-->
+<script src="common/auth/common.auth.js"></script>
+<script src="common/auth/common.auth.controller.js"></script>
+<script src="common/auth/common.auth.service.js"></script>
 
 </html>

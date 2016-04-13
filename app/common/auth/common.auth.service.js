@@ -1,16 +1,16 @@
 'use strict';
 /**
  *  @author Sieger
- *  @module concentrator.auth
+ *  @module common.auth
+ *  @memberof angular_module
  */
-angular.module('concentrator.auth')
+angular.module('common.auth')
     .service('auth', ['$http', '$log', '$cookies', '$window', authService])
-    .controller('loginCtrl', ['$scope', '$cookies', '$log', '$window', 'auth', 'l10n', loginCtrl]);
-
+    
 /**
  * Returns authService singleton service
  *
- * @instance
+ * @method     authService
  * @param      $http   $http  default angular http service
  * @param      $log   $log     default angular log service
  * @param      $cookies   $cookies default angular cookie management
@@ -48,7 +48,7 @@ function authService($http, $log, $cookies, $window) {
     };
 
 
-    this.isAuthed = isAuthedF ;
+    this.isAuthed = isAuthedF;
     /**
      * Determine if authed.
      *
@@ -83,54 +83,3 @@ function authService($http, $log, $cookies, $window) {
     };
 
 };
-
-
-
-
-
-/**
- * controller for login screen
- *
- * @method     loginCtrl
- * @param      {$scope}  $scope    
- * @param      {$cookies}  $cookies  
- * @param      {$log}  $log      
- * @param      {$window}  $window   window
- * @param      {concentrator.auth}  auth      auth service
- * @param      {concentrator.l10n}  l10n  locale service
- */
-function loginCtrl($scope, $cookies, $log, $window, auth, l10n) {
-
-    $scope.client = {
-        name: 'Jumbo',
-        url: '/',
-        imgSrc: 'assets/img/circle_gradient.png'
-    };
-
-    $scope.brand = {
-        name: 'Concentrator',
-        url: '/',
-        imgSrc: 'assets/img/diract_logo.png'
-    };
-
-    $scope.scope = function() {
-        $log.info($scope);
-    }
-
-    $scope.login = function() {
-        function cb_result(b_success) {
-            $window.location.href = "/"
-        };
-        var temp = auth.doAuth($scope.username, $scope.password, cb_result);
-    };
-
-    $scope.messages = []
-
-    $scope.tempmsg = {
-        "class": "list-group-item-danger",
-        "info": "good info, just debug"
-    };
-
-    $scope.l10n = l10n.init($scope, function() {});
-    $log.info($scope);
-}

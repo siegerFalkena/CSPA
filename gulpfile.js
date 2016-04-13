@@ -28,6 +28,12 @@ var excludeBowerImports = ['!' + src + 'assets/bower/*.*',
     '!' + src + 'assets/bower/**/*.*'
 ];
 
+
+gulp.task('docs', function(){
+    return sequence('cleanDocs', 'generateDocs');
+});
+
+
 gulp.task('build', ['components', 'docs'], function() {
     util.log(excludeBowerImports);
     gulp.src([SRC + '**/*.*'
@@ -43,9 +49,7 @@ gulp.task('build', ['components', 'docs'], function() {
 
 
 gulp.task('devBuild', ['components', 'test'], function() {
-    gulp.src([SRC + '**/*.*', excludeBowerImports[0],
-            excludeBowerImports[1]
-        ])
+    gulp.src([SRC + '**/*.*'])
         .pipe(changed(DIST))
         .pipe(gulp.dest(DIST));
     gulp.src([SRC + 'index.js'])
@@ -64,7 +68,7 @@ gulp.task('devBuild', ['components', 'test'], function() {
 
 gulp.task('components', function() {
     return sequence('bower', 'copycomponents');
-})
+});
 
 
 gulp.task('copycomponents', ['copyCSS', 'copyImages'],
@@ -88,12 +92,14 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'],
             .pipe(changed(DIST + 'assets/js/'))
             .pipe(gulp.dest(DIST + 'assets/js/'));
     });
+
+
 gulp.task('copyCSS', ['copyFonts'], function() {
     return gulp.src([
             ASSET + 'css/metro-bootstrap.css',
             ASSET + 'css/flags.css',
             ASSET + 'css/ui-grid.css',
-           ASSET +  'bower/bootstrap/dist/css/bootstrap.min.css',
+            ASSET + 'bower/bootstrap/dist/css/bootstrap.min.css',
             ASSET + 'bower/angular-ui-grid/ui-grid.woff',
             ASSET + 'bower/angular-ui-grid/ui-grid.ttf',
             ASSET + 'bower/angular-ui-grid/ui-grid.min.css',
@@ -125,15 +131,15 @@ gulp.task('bower', function() {
     return bower({
         cmd: 'install'
     });
-})
+});
 
 var child_exec = require('child_process').exec;
-gulp.task('docs', function(done) {
+gulp.task('generateDocs', function(done) {
     child_exec('node ./node_modules/jsdoc/jsdoc.js -r -d ./documentation -c jsdoc.conf', undefined, done);
 });
 
-var lr;
 
+var lr;
 function reloadCB(event) {
     var fileName = require('path').relative(__dirname +
         '/dist/', event.path);
@@ -143,18 +149,20 @@ function reloadCB(event) {
             files: [fileName]
         }
     });
-}
+};
+
 
 gulp.task('cleanDocs', function(){
     return gulp.src([DOC + '**/*.*', DOC + '*.*'], {read:false}).pipe(clean());
 });
+
 
 gulp.task('test', function() {
     gulp.src(
         'assets/bower/angular-mocks/angular-mocks.js'
     ).pipe(gulp.dest('assets/js/'));
     return sequence('devBuild', 'runTestServer');
-})
+});
 
 
 gulp.task('runTestServer', function(done) {
@@ -165,7 +173,7 @@ gulp.task('runTestServer', function(done) {
     }, function() {
         done();
     }).start();
-})
+});
 
 
 gulp.task('buildWatcher', function() {
@@ -175,7 +183,7 @@ gulp.task('buildWatcher', function() {
     ], [
         'devBuild', 'docs'
     ]);
-})
+});
 
 
 gulp.task('reloadWatcher', function() {
@@ -183,7 +191,8 @@ gulp.task('reloadWatcher', function() {
     return gulp.watch([DIST + '**/*.*', DIST +
         '*.*'
     ], reloadCB);
-})
+});
+
 
 var appServ;
 gulp.task('devServer', function() {
@@ -213,6 +222,7 @@ gulp.task('devEnv', function() {
     ]);
 });
 
+
 function XorHash(string) {
     var bytes = '';
     var randomSeed = "abcdefghijklmnopqrsetuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -221,7 +231,8 @@ function XorHash(string) {
         bytes += String.fromCharCode(33 + temp);
     }
     return bytes;
-}
+};
+
 
 function expressAuthService(router) {
     router.post('/reauth', function(req, res, cb) {
@@ -252,6 +263,7 @@ function expressAuthService(router) {
         cb();
     });
 };
+
 
 function expressRESTservice(router) {
     router.get('/product/:id', function(req, res, cb) {
@@ -325,6 +337,4 @@ function expressRESTservice(router) {
         }]);
         cb();
     });
-
-
-}
+};

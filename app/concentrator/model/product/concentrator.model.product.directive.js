@@ -1,5 +1,5 @@
 'use strict';
-angular.module('concentrator.component.product').directive('productlist',
+angular.module('concentrator.model.product').directive('productlist',
     productlist);
 
 function productlist() {
@@ -12,6 +12,6 @@ function productlist() {
             messages: '=',
             sortaction: '='
         },
-        templateUrl: '/concentrator/product/partials/productList.html'
+        templateUrl: '/concentrator/model/product/partials/productList.html'
     }
 }

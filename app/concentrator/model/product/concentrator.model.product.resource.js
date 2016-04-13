@@ -1,5 +1,5 @@
 'use strict';
-angular.module('concentrator.service.resource', ['ngResource'])
+angular.module('concentrator.model.product', ['ngResource'])
     .config(['$resourceProvider', productResources])
     .service('productResources', ['$resource', '$log', productAPI]);
 

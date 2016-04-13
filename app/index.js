@@ -9,10 +9,11 @@ angular.module('concentrator', [
         'ui.bootstrap',
         'ui.bootstrap.collapse',
         'ui.bootstrap.buttons',
+        'ui.bootstrap.tooltip',
         'concentrator.concentrator.navbar',
-        'concentrator.component.product',
-        'concentrator.shared.localization',
-        'concentrator.auth',
+        'concentrator.model.product',
+        'common.localization',
+        'common.auth',
         'ngCookies'
     ]).config(['$cookiesProvider', '$httpProvider', function($cookiesProvider, $httpProvider) {}])
     .run(runInit)
@@ -38,7 +39,7 @@ function loginscreen() {
     return {
         restrict: 'E',
         transclude: true,
-        templateUrl: '/shared/auth/loginScreen.html'
+        templateUrl: '/common/auth/loginScreen.html'
     }
 }
 

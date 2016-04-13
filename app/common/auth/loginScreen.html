@@ -6,12 +6,22 @@
                     <div class="row logo-bg">
                         <brand brand="brand"></brand>
                         <brand brand="client" class="align-right"></brand>
+                        <flag-selector localeservice="l10n" class="navbar-brand pull-right"></flag-selector>
                     </div>
                     <div class="input-group input-group-lg col-lg-12 padding">
-                        <input type="text" name="username" class="form-control niceinput bgtranslucent submitbutton" ng-model="username" required placeholder="{{locale.username}}">
+                        <input type="text" name="username" class="form-control niceinput bgtranslucent submitbutton" ng-model="username" required 
+                        uib-tooltip="usernametooltip" 
+                        tooltip-enable="loginform.username.$error.required && ! loginform.username.$pristine"
+                        tooltip-placement="right"
+                        placeholder="{{locale.username}}">
                     </div>
                     <div class="input-group input-group-lg col-lg-12 padding ">
-                        <input type="password" name="password" class="form-control niceinput bgtranslucent submitbutton" ng-model="password" required placeholder="{{locale.password}}">
+                        <input type="password" name="password" class="form-control niceinput bgtranslucent submitbutton" ng-model="password"
+                        uib-tooltip="passwordtooltip" 
+                        tooltip-enable="loginform.password.$error.required && ! loginform.username.$pristine"
+                        tooltip-placement="right"
+                        required placeholder="{{locale.password}}">
+
                     </div>
                     <div class="input-group input-group-lg col-lg-12 padding ">
                         <button class="form-control btn btn-lg btn-block bgtranslucent submitbutton niceinput" ng-disabled="loginform.$invalid" ng-click="login()">

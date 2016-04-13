@@ -1,12 +1,33 @@
-<div class="divide-nav"
-    ng-controller="productCtrl">
+<div class="divide-nav" ng-controller="productCtrl" style="padding-top: 71px">
     <div class="col-md-12">
-        <productlist
-            sortaction="sortaction"
-            searchaction="searchaction"
-            messages="messages"
-            itemlist="itemlist">
-            </productlist>
-
+        <div class="row">
+            <div class="col-md-6 col-md-offset-2">
+                <div class="input-group padding">
+                    <!-- /btn-group -->
+                    <input type="text" class="form-control" aria-label="..." placeholder="{{locale.filter ? locale.filter : 'locale.filter'}}">
+                    <div class="input-group-btn" uib-dropdown>
+                        <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle aria-haspopup="true" aria-expanded="false">{{locale.category ? locale.category : 'locale.category'}} <span class="caret"></span>
+                        </button>
+                        <ul uib-dropdown-menu class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default">
+                        {{locale.addfilter ? locale.addfilter : 'locale.addfilter'}}
+                        </button>
+                    </div>
+                </div>
+                <!-- /input-group -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <productlist sortaction="sortaction" searchaction="searchaction" messages="messages" itemlist="itemlist">
+                </productlist>
+            </div>
+        </div>
     </div>
 </div>

@@ -25,8 +25,9 @@ function l10n($locale, $http, $log, $rootScope) {
         { name: 'gb', id: 'gb', flag: 'src', file: '/LANG/en-gb.json' }
     ];
     this.currentLang = this.supportedLanguages[1];
+    this.currentLocale = undefined;
+   
     this.changeLocale = changeLocale;
-    
     /**
      * changes the locale and reinitializes scope.
      *
@@ -34,12 +35,13 @@ function l10n($locale, $http, $log, $rootScope) {
      * @param      strLocale  locale as <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO-639-1</a>
      */
     function changeLocale(supportedLanguage) {
+        $log.info('pops');
         this.currentLang = supportedLanguage;
+        this.init();
     };
 
 
     this.init = init;
-
     /**
      * initializes a JSON locale object in scope. locale object contains identifier <locale> and bindings <english, translated> for translations
      *
@@ -48,18 +50,10 @@ function l10n($locale, $http, $log, $rootScope) {
      * @param      {Function}  onChangeFunctions  callback function without arguments for retranslating controller generated text 
      * @param      {String}  strLocale   <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO-639-1</a> string for reinitializing language 
      */
-    function init(scope, onChangeFunctions, strLocale) {
-        scope.$watch('locale', function(newVal, oldVal) {
-            if (newVal != undefined) {
-                onChangeFunctions();
-            } else {
-                $log.info('locale was changed, but the new value was undefined');
-            }
-        });
-
+    function init() {
+        var l10nSingleton = this;
         function cb_success(res) {
-            scope.locale = res.data;
-            $log.info(scope.locale);
+            l10nSingleton.currentLocale = res.data;
         };
 
         function cb_failure(res) {

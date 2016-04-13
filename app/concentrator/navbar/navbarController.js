@@ -24,20 +24,14 @@ function navbarCtrl($scope, $log, l10n, auth) {
         imgSrc: 'assets/img/diract_logo.png'
     };
 
-    function onChangeFunctions() {
-        
-    };
-
     $scope.logout = function logout() {
         auth.logout();
     };
 
-    $scope.changelocale = function changeLocale(supportedLanguage){
-        $log.info(supportedLanguage);
-        l10n.changeLocale(supportedLanguage);
-        l10n.init($scope, onChangeFunctions)
-    };
-    $scope.currentlocale = l10n.currentLang;
-    $scope.supportedLanguages = l10n.supportedLanguages;
-    l10n.init($scope, onChangeFunctions);
+    $scope.l10n = l10n;
+    $scope.$watch('l10n.currentLocale', function(newValue, oldValue, scope) {
+        if (newValue != undefined) {
+            scope.locale = newValue;
+        }
+    });
 };

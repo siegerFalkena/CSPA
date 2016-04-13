@@ -60,19 +60,7 @@ angular.module('concentrator')
                     .state("product", {
                         url: '/product',
                         controller: 'productCtrl',
-                        templateUrl: 'concentrator/product/product.html'
-                    })
-                    .state("vendor", {
-                        url: '/vendor',
-                        templateUrl: 'components/concentrator/vendor/vendor.html'
-                    })
-                    .state("attribute", {
-                        url: '/attribute',
-                        templateUrl: 'components/concentrator/attribute/attribute.html'
-                    })
-                    .state("category", {
-                        url: '/category',
-                        templateUrl: 'components/concentrator/category/category.html'
+                        templateUrl: 'concentrator/views/product/productView.html'
                     });
 
             }

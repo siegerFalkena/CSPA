@@ -44,5 +44,6 @@ function loginscreen() {
 }
 
 function runInit($locale, $cookies, $log, l10n, auth) {
+    $log.info(l10n);
     l10n.init();
 }

@@ -12,6 +12,8 @@
     "admin": "Admin",
     "username": "Username",
     "logout": "Logout",
+    "addfilter": "voeg filter toe",
+    "filter": "filter",
     "query": "Query",
     "search": "Search",
     "isRequired": "is required",

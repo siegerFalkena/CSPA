@@ -12,7 +12,7 @@ function filter() {
             searchcategories: '=',
             searchaction: '='
         },
-        templateUrl: '/shared/components/searchFilter/partials/navSearchFilter.html'
+        templateUrl: '/common/components/searchFilter/partials/navSearchFilter.html'
     }
 }
 
@@ -24,7 +24,7 @@ function navSearchFilter() {
             searchcategories: '=',
             searchaction: '='
         },
-        templateUrl: '/shared/components/searchFilter/partials/navSearchFilter.html'
+        templateUrl: '/common/components/searchFilter/partials/navSearchFilter.html'
     }
 }
 

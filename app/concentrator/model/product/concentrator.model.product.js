@@ -5,6 +5,7 @@ angular.module('concentrator.model.product', [
     'concentrator.service.resource',
     'concentrator.service.controllerUtils',
     'concentrator.component.messagelist',
+    'common.localization',
     'angular-toArrayFilter',
     'ui.grid'
 ]);

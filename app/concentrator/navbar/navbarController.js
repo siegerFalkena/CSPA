@@ -24,14 +24,12 @@ function navbarCtrl($scope, $log, l10n, auth) {
         imgSrc: 'assets/img/diract_logo.png'
     };
 
-    $scope.logout = function logout() {
-        auth.logout();
-    };
-
-    $scope.l10n = l10n;
-    $scope.$watch('l10n.localefile', function(newValue, oldValue, scope) {
-        if (newValue != undefined) {
-            scope.locale = newValue;
+    $scope.$watch('l10n.localefile', function(newVal, oldVal, bool){
+        if(newVal != undefined){
+            $scope.locale = newVal;
         }
     });
+
+    $scope.auth = auth;
+
 };

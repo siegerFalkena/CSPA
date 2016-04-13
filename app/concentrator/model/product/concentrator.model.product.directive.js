@@ -12,6 +12,6 @@ function productlist() {
             messages: '=',
             sortaction: '='
         },
-        templateUrl: '/concentrator/model/product/partials/productList.html'
+        templateUrl: '/concentrator/views/product/productList.html'
     }
 }

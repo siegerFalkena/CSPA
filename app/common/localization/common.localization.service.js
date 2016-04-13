@@ -1,6 +1,11 @@
+angular.module('common.localization').service('l10n', ['$locale', '$http', '$log', '$cookies', '$rootScope', l10n])
+.factory('l10nF', ['$locale', '$http', '$log', '$cookies', '$rootScope', l10nFact]);
 
-angular.module('common.localization').service('l10n', ['$locale', '$http', '$log','$cookies', l10n]);
+function l10nFact($locale, $http, $log, $cookies, $rootScope){
+    return {
 
+    };
+}
 
 /**
  * object constructor
@@ -13,14 +18,13 @@ angular.module('common.localization').service('l10n', ['$locale', '$http', '$log
  */
 function l10n($locale, $http, $log, $cookies) {
 
-
     this.supportedLanguages = [
         { name: 'nl', id: 'nl', flag: 'src', file: '/LANG/nl-nl.json' },
         { name: 'gb', id: 'gb', flag: 'src', file: '/LANG/en-gb.json' }
     ];
     this.currentLang = this.supportedLanguages[1];
     this.localefile = undefined;
-   
+
     this.changeLocale = changeLocale;
     /**
      * changes the locale and reinitializes scope.
@@ -31,7 +35,6 @@ function l10n($locale, $http, $log, $cookies) {
     function changeLocale(supportedLanguage) {
         this.init(supportedLanguage);
     };
-
 
 
     this.init = init;
@@ -46,19 +49,20 @@ function l10n($locale, $http, $log, $cookies) {
      */
     function init(specificLang) {
         var cookieLang = $cookies.get('locale');
-        if(cookieLang != undefined){
+        if (cookieLang != undefined) {
             this.currentLang = angular.fromJson(cookieLang);
         } else {
             this.currentLang = this.supportedLanguages[1];
         };
-        if(specificLang != undefined) {
+        if (specificLang != undefined) {
             this.currentLang = specificLang;
         };
-        var l10nSingleton = this;
+        var service = this;
+
         function cb_success(res) {
             var data = res.data;
-            l10nSingleton.localefile = data;
-            $cookies.put('locale', angular.toJson(l10nSingleton.currentLang));
+            this.localefile = data;
+            $cookies.put('locale', angular.toJson(service.currentLang));
         };
 
         function cb_failure(res) {

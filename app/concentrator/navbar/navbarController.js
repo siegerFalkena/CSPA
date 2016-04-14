@@ -6,11 +6,11 @@ angular.module('concentrator.concentrator.navbar', [
         'common.localization',
         'common.auth'
     ])
-    .controller('navbarCtrl', ['$scope', '$log', 'l10n', 'auth', navbarCtrl]);
+    .controller('navbarCtrl', ['$scope', '$log', 'l10nF', 'auth', navbarCtrl]);
 
 
 
-function navbarCtrl($scope, $log, l10n, auth) {
+function navbarCtrl($scope, $log, l10nF, auth) {
 
     $scope.brand = {
         name: 'Jumbo',
@@ -24,12 +24,8 @@ function navbarCtrl($scope, $log, l10n, auth) {
         imgSrc: 'assets/img/diract_logo.png'
     };
 
-    $scope.$watch('l10n.localefile', function(newVal, oldVal, bool){
-        if(newVal != undefined){
-            $scope.locale = newVal;
-        }
-    });
-
+    $scope.l10nF = l10nF;
+    $scope.locale = l10nF.getLocale();    
     $scope.auth = auth;
 
 };

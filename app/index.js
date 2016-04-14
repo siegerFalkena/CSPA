@@ -43,7 +43,7 @@ function loginscreen() {
     }
 }
 
-function runInit($locale, $cookies, $log, l10n, auth) {
-    $log.info(l10n);
-    l10n.init();
+function runInit($locale, $cookies, $log, l10nF, auth) {
+    l10nF.init();
+    l10nF.getLocale();
 }

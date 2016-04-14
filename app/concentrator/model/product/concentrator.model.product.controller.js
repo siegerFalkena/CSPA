@@ -4,31 +4,16 @@
  */
 angular.module('concentrator.model.product')
 
-.controller('productCtrl', [
-    '$scope',
-    'productResources',
-    '$log',
-    'l10n',
+.controller('productCtrl', ['$scope','productResources','$log','l10nF',
     productCtrl
 ]);
 
-function productCtrl(
-    $scope,
-    productResources,
-    $log,
-    controllerCommons,
-    l10n) {
-
+function productCtrl($scope,productResources,$log,l10nF) {
 
     //product resource class
     var Product = productResources.getClass();
-    $scope.l10n = l10n;
-    $scope.$watch('l10n', function(newVal, oldVal, bool) {
-        if (newVal != undefined) {
-            $scope.locale = newVal.localefile;
-        }
-    });
 
+    $scope.locale = l10nF.getLocale();
     $scope.resourceList = [];
 
 };

@@ -59,7 +59,6 @@ angular.module('concentrator')
 
                     .state("product", {
                         url: '/product',
-                        controller: 'productCtrl',
                         templateUrl: 'concentrator/views/product/productView.html'
                     });
 

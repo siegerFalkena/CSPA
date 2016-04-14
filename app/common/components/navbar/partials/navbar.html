@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="navbarCtrl">
     <div class="navbar-header" style="margin-right: 40px">
         <brand brand="diract"></brand>
         <brand brand="brand"></brand>
@@ -50,7 +50,7 @@
                 </ul>
             </li>
             <li class="menuitem padding">
-                <flag-selector localeservice="l10n"></flag-selector>
+                <flag-selector localeservice="l10nF"></flag-selector>
             </li>
             <li class="menuitem" style="padding-right: 20px">
                 <a ng-click="auth.logout()"><h4><span class="glyphicon glyphicon-log-out" aria-hidden="true"></h4></a>

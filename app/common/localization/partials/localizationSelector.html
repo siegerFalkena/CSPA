@@ -1,10 +1,10 @@
 <div id="single-button" uib-dropdown is-open="localedropdown.isopen">
     <a href uib-dropdown-toggle>
-        <img class="flag flag-{{localeservice.currentLocale().name}}" style="border:none" />
+        <img class="flag flag-{{lln.currentLocale().name}}" style="border:none" />
     </a>
     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-        <li class="menuitem" ng-repeat="supportedLanguage in localeservice.supportedLanguages()">
-            <a ng-click="localeservice.init(supportedLanguage)">
+        <li class="menuitem" ng-repeat="supportedLanguage in lln.supportedLanguages()">
+            <a ng-click="lln.init(supportedLanguage)">
                 <tr>
                 <td>
                     <h4>{{supportedLanguage.name}} 

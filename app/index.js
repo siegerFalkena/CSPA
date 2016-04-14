@@ -28,7 +28,7 @@ angular.module('concentrator', [
  * @param      {auth}  auth    @link concentrator.auth
  */
 function coreCtrl($scope, auth) {
-    if (auth.isAuthed()) {
+    if (auth.isAuth()) {
         $scope.loginscreen = false
     } else {
         $scope.loginscreen = true
@@ -43,7 +43,7 @@ function loginscreen() {
     }
 }
 
-function runInit($locale, $cookies, $log, l10nF, auth) {
-    l10nF.init();
-    l10nF.getLocale();
+function runInit($locale, $cookies, $log, l10n, auth) {
+    l10n.init();
+    l10n.getLocale();
 }

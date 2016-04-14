@@ -5,22 +5,12 @@
  *  @memberof angular_module
  */
 angular.module('common.auth')
-    .service('auth', ['$http', '$log', '$cookies', '$window', authService])
+    .factory('auth', ['$http', '$log', '$cookies', '$window', authServiceF])
     
-/**
- * Returns authService singleton service
- *
- * @method     authService
- * @param      $http   $http  default angular http service
- * @param      $log   $log     default angular log service
- * @param      $cookies   $cookies default angular cookie management
- * @param      $window   $window  default angular window object
- * @inner
- */
-function authService($http, $log, $cookies, $window) {
 
-    this.doAuth = doAuthF;
-    /**
+function authServiceF($http, $log, $cookies, $window) {
+    var authService = {};
+     /**
      * authenticates user to server
      *
      * @method     doAuthF
@@ -29,7 +19,7 @@ function authService($http, $log, $cookies, $window) {
      * @param      Function  cb_result(boolean) callback function
      * @memberof   authService
      */
-    function doAuthF(username, password, cb_result) {
+    authService.auth =  function doAuthF(username, password, cb_result) {
         function cb_success(response) {
             $log.info("authentication: " + response.status + "\t" + response.statusText);
             cb_result(true);
@@ -47,16 +37,7 @@ function authService($http, $log, $cookies, $window) {
         return temp;
     };
 
-
-    this.isAuthed = isAuthedF;
-    /**
-     * Determine if authed.
-     *
-     * @method     isAuthed
-     * @return     boolean  true if all relevant authentication methods are set
-     * @memberof authService
-     */
-    function isAuthedF() {
+    authService.isAuth = function isAuthedF() {
         var authToken = $cookies.get('authToken');
         var user = $cookies.get('user');
         var role = $cookies.get('role');
@@ -67,19 +48,22 @@ function authService($http, $log, $cookies, $window) {
         }
     };
 
-
-    this.logout = logoutF;
-    /**
-     * removes all authentication related information from storage
-     *
-     * @method     logout
-     * @memberof authService
-     */
-    function logoutF() {
+    authService.logout = function logoutF() {
         $cookies.remove("user");
         $cookies.remove("role");
         $cookies.remove("authToken");
         $window.location.href = "/"
     };
 
-};
+    return {
+        auth :function(username, password, cb_result){
+            return authService.auth(username, password, cb_result);
+        },
+        isAuth: function(){
+            return authService.isAuth()
+        },
+        logout: function(){
+            return authService.logout()
+        }
+    }
+}

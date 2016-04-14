@@ -4,16 +4,16 @@
  */
 angular.module('concentrator.model.product')
 
-.controller('productCtrl', ['$scope','productResources','$log','l10nF',
+.controller('productCtrl', ['$scope','productResources','$log','l10n',
     productCtrl
 ]);
 
-function productCtrl($scope,productResources,$log,l10nF) {
+function productCtrl($scope,productResources,$log,l10n) {
 
     //product resource class
     var Product = productResources.getClass();
 
-    $scope.locale = l10nF.getLocale();
+    $scope.l10n = l10n;
     $scope.resourceList = [];
 
 };

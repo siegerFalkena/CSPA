@@ -6,7 +6,7 @@ function flagSelector() {
     return {
         restrict: 'E',
         scope: {
-            localeservice: '=',
+            lln: '=',
         },
         templateUrl: '/common/localization/partials/localizationSelector.html'
     }

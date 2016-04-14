@@ -9,6 +9,8 @@
     "channel": "Kanaal",
     "order": "Orders",
     "admin": "Administrator",
+    "addfilter": "voeg filter toe",
+    "filter": "filter tekst",
     "user": "Gebruiker",
     "username": "Gebruikersnaam",
     "logout": "Uitloggen",

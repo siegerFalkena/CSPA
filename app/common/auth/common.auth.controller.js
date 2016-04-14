@@ -33,15 +33,12 @@ function loginCtrl($scope, $cookies, $log, $window, auth, l10n) {
         function cb_result(b_success) {
             $window.location.href = "/"
         };
-        var temp = auth.doAuth($scope.username, $scope.password, cb_result);
+        var temp = auth.auth($scope.username, $scope.password, cb_result);
     };
 
     $scope.messages = []
 
     $scope.l10n = l10n;
-    $scope.$watch('l10n.localefile', function(newValue, oldValue, scope) {
-        if (newValue != undefined) {
-            scope.locale = newValue;
-        };
-    });
+    $scope.locale = l10n.getLocale();
+    
 }

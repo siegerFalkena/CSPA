@@ -87,7 +87,9 @@ gulp.task('copycomponents', ['copyCSS', 'copyImages'],
                 ASSET + 'bower/angular-mocks/angular-mocks.js',
                 ASSET + 'bower/angular-ui-router/release/angular-ui-router.min.js',
                 ASSET + 'bower/angular-bootstrap/ui-bootstrap-tpls.min.js',
-                ASSET + 'bower/oclazyload/dist/ocLazyLoad.min.js'
+                ASSET + 'bower/oclazyload/dist/ocLazyLoad.min.js',
+                '/node_modules/quagga/dist/quagga.min.js'
+
             ])
             .pipe(changed(DIST + 'assets/js/'))
             .pipe(gulp.dest(DIST + 'assets/js/'));
